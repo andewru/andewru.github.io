@@ -1,0 +1,760 @@
+<!DOCTYPE html><html prefix="og: http://ogp.me/ns#" lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=yes"><meta name="yandex-verification" content="665efbe9da4ff918"><meta name="yandex-verification" content="4d3d0a040570d03f"><meta name="yandex-verification" content="5a6a973604270123"><meta property="fb:admins" content="100011704941346"><meta property="og:title" content="Установка PHP7 на Windows"><meta property="og:type" content="website"><meta property="og:url" content="https://andew.ru/ru/pages/page/install-php-on-windows"><meta property="og:image" content="https://andew.ru/content/uploads/userfiles/files/php/php-andew-ru.png"><meta property="og:description" content="В статье описывается ручная portable установка языка PHP 7.1, 7.2 и 7.^ на Windows из zip архива. Показаны все основные шаги инсталляции последней версии PHP, начиная от выбора необходимой сборки дистрибутива PHP и его развертывания в Windows, до настройки самого языка и WEB сервера Apache 2.4 для работы с PHP скриптами для обработки http запросов. Описана структура и назначение основных файлов дистрибутива PHP и приведены основные команды для работы с PHP из командой строки. Продемонстрировано использование встроенного в PHP HTTP WEB сервера. Статья содержит скринкаст, где, все описанное в статье, выполнено на примерах в Windows7."><meta property="og:site_name" content="Andew.ru"><meta name="description" content="В статье описывается ручная portable установка языка PHP 7.1, 7.2 и 7.^ на Windows из zip архива. Показаны все основные шаги инсталляции последней версии PHP, начиная от выбора необходимой сборки дистрибутива PHP и его развертывания в Windows, до настройки самого языка и WEB сервера Apache 2.4 для работы с PHP скриптами для обработки http запросов. Описана структура и назначение основных файлов дистрибутива PHP и приведены основные команды для работы с PHP из командой строки. Продемонстрировано использование встроенного в PHP HTTP WEB сервера. Статья содержит скринкаст, где, все описанное в статье, выполнено на примерах в Windows7."><meta name="keywords" content="php, php7, php7.1, php7apache2_4.dll, php.exe, php-cgi.exe, php-win.exe, apache, apache2.4, windows, установка, install, настройка"><meta name="copyright" content="Andew.ru"><meta name="generator" content="SMCMS created by Andrey Boldyrev"><title>Andew.ru | Установка PHP7 на Windows</title><link rel="stylesheet" href="/css/pure/0.6.0/pure-min.css"><link rel="stylesheet" href="/css/pure/0.6.0/grids-responsive-min.css"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><link rel="stylesheet" href="/css/layouts/main.min.css?v=v1.1.10"><link href="/robots.txt" title="robots" rel="help"><link rel="canonical" href="https://andew.ru/ru/pages/page/install-php-on-windows"><script type="text/javascript" src="https://yastatic.net/jquery/2.2.0/jquery.min.js"></script></head><body itemscope itemtype="http://schema.org/WebSite"><div id="layout"><a href="#menu" id="menuLink" class="menu-link"><span></span></a><div id="menu"><div class="pure-menu"><a href="https://andew.ru/ru/pages/menu/main-menu" class="white-font pure-menu-link pure-menu-heading">MENU</a><ul class="pure-menu-list"><li class="pure-menu-item sm_super_catergory_page"><a href="https://andew.ru/ru/pages/category/home" title="category" class="pure-menu-link">Главная</a></li><li class="pure-menu-item sm_super_catergory_page"><a href="https://andew.ru/ru/pages/category/html" title="category" class="pure-menu-link">HTML</a></li><li class="pure-menu-item sm_super_catergory_page"><a href="https://andew.ru/ru/pages/category/javascript" title="category" class="pure-menu-link">JavaScript</a></li><li class="pure-menu-item sm_super_catergory_page"><a href="https://andew.ru/ru/pages/category/linux" title="category" class="pure-menu-link">Linux</a></li><li class="pure-menu-item sm_super_catergory_page"><a href="https://andew.ru/ru/pages/category/apache-category" title="category" class="pure-menu-link">Apache</a></li><li class="pure-menu-item sm_super_catergory_page"><a href="https://andew.ru/ru/pages/category/mysql" title="category" class="pure-menu-link">MySQL</a></li><li class="pure-menu-item sm_super_catergory_page"><a href="https://andew.ru/ru/pages/category/php" title="category" class="pure-menu-link">PHP</a></li><li class="pure-menu-item sm_super_catergory_page"><a href="https://andew.ru/ru/pages/category/off-topic" title="category" class="pure-menu-link">Разное</a></li><li class="pure-menu-item sm_single_page"><a href="https://andew.ru/ru/pages/page/about" title="article" class="pure-menu-link">О сайте</a></li></ul></div></div><div id="main"><div class="pure-g"><div class="pure-u-1 pure-u-md-18-24"><div id="brand"><div class="float-right sm-brand"><a target="_blank" title="Andew.ru Google Search" href="https://cse.google.ru/cse/publicurl?cx=006038237880431707259:wpljjnbqoja" class="pure-button pure-button-primary"><i class="fa fa-search fa-fw"></i></a></div><div class="sm-brand" itemprop="name"><a itemprop="url" href="https://andew.ru/"><span class="sm-logo"><span class="sm-logo-a">A</span>NDEW.ru</span> Андрей&nbsp;Болдырев</a></div><div class="sm-site-descr" itemprop="description">Материалы для WEB разработки на LAMP</div><meta itemprop="image" content="https://andew.ru/img/headers/logo-andew-ru.png"></div><div id="content"><div class="content" itemprop="hasPart" itemscope itemtype="http://schema.org/Article"><div class="header"><h1 itemprop="name"><a href="https://andew.ru/ru/pages/page/install-php-on-windows" itemprop="url" title="Установка PHP7 на Windows">Установка PHP7 на Windows</a></h1><meta itemprop="headline" content="Установка PHP7 на Windows"></div><section class="post"><header class="post-header"><div class="post-meta"><div class="cursor-help" title="Автор"><i class="fa fa-user darkgray-font fa-fw"></i><span itemprop="creator">andew</span></div><div class="cursor-help" title="Дата публикации"><i class="fa fa-calendar darkgray-font fa-fw"></i><time itemprop="datePublished" datetime="2016-12-28T18:43:20+00:00" data-timestamp="1482950600">2016-12-28T18:43:20+00:00</time><meta itemprop="dateCreated" content="2016-12-19T10:05:51+00:00"></div><div class="cursor-help" title="Дата изменения"><i class="fa fa-calendar-o darkgray-font fa-fw"></i><time itemprop="dateModified" datetime="2018-02-18T09:07:33+00:00" data-timestamp="1518944853">2018-02-18T09:07:33+00:00</time></div><div class="cursor-help" title="Всего просмотров"><i class="fa fa-eye darkgray-font fa-fw"></i><span itemprop="interactionStatistic">18210</span></div></div></header><div class="post-description"><meta itemprop="keywords" content="php, php7, php7.1, php7apache2_4.dll, php.exe, php-cgi.exe, php-win.exe, apache, apache2.4, windows, установка, install, настройка"><img itemprop="image" class="post-thumbnail pure-img" alt="Установка PHP7 на Windows" title="Установка PHP7 на Windows" src="https://andew.ru/content/uploads/userfiles/files/php/php-andew-ru.png"><p itemprop="description">В статье описывается ручная portable установка языка PHP 7.1, 7.2 и 7.^ на Windows из zip архива. Показаны все основные шаги инсталляции последней версии PHP, начиная от выбора необходимой сборки дистрибутива PHP и его развертывания в Windows, до настройки самого языка и WEB сервера Apache 2.4 для работы с PHP скриптами для обработки http запросов. Описана структура и назначение основных файлов дистрибутива PHP и приведены основные команды для работы с PHP из командой строки. Продемонстрировано использование встроенного в PHP HTTP WEB сервера. Статья содержит скринкаст, где, все описанное в статье, выполнено на примерах в Windows7.</p><div class="clear-both"></div><p>&nbsp;</p>
+
+<h2 id="php7">PHP7</h2>
+
+<p>Язык программирования <strong>PHP</strong> сейчас является наиболее распространенным языком для <strong>WEB</strong> приложений. <strong>PHP</strong> сочетает в себе большой накопленный опыт его использования и надежность, что позволяет реализовывать на нем не только малые и средние проекты, но и большие. Нужно вспомнить, что изначально, <strong>Facebook</strong> и <strong>ВКонтакте</strong> были написаны на <strong>PHP</strong>, и только потом были переведены на собственные компилируемые языки, основой для которых послужил <strong>PHP</strong>. Язык <strong>PHP</strong> не стоит на месте и постоянно развивается, но это делается разумно и осторожно, что обеспечивает пользователям легкий переход на новые версии языка, получая при этом улучшение в скорости и надежности.&nbsp;Основные действия по установке <strong>PHP7</strong>, описанные в этой статье, подойдут как для <strong>PHP 7.1.0</strong>, так и для <strong>PHP 7.2.0</strong> и любых версий <strong>PHP 7.^</strong>. В <u>примерах</u> статьи используются версия <strong>PHP 7.1.0</strong> (01.12.2016). Более подробно о нововведениях языка <strong>PHP7</strong> рекомендую посмотреть в докладе <strong>Дмитрия Стогова</strong> (<em><strong>Zend Technologies</strong></em>) - <a href="https://youtu.be/WIcdjJbFuCs" target="_blank" title="Перейти на YouTube к видео докладу Дмитрия Стогова (Zend Technologies) Развитие ветки PHP-7"><strong>&quot;Развитие ветки PHP-7&quot;<span class="fa fa-external-link fa-fw font-xsmall"></span></strong></a>. Здесь приведу из доклада Дмитрия только факты о том, что, по результатам тестов, <strong>PHP</strong> сейчас является самым быстрым из интерпретируемых языков и дальнейшее направление развития - это приближение по скорости к языкам C.</p>
+
+<p><span class="fa fa-play-circle-o fa-fw orange-font"></span><a href="/ru/pages/page/install-php-on-windows#screencast-install-php-on-windows" title="Перейти к скринкасту на этой странице"><strong>Перейти к скринкасту &quot;УСТАНОВКА PHP7 на Windows&quot;</strong></a></p>
+
+<p>&nbsp;</p>
+
+<h2 id="php-on-windows">PHP на Windows</h2>
+
+<p>Несмотря на то, что в большинстве случаев <strong>PHP</strong> используют на <strong>Linux</strong> операционных системах, он с таким же успехом может использоваться и на <strong>Windows</strong>, как в сочетании с <strong>Apache</strong>, так и с&nbsp;Windows <strong>IIS</strong> WEB серверами. Например, если вы работаете на <strong>Windows</strong>, но вам необходимо выполнять запуск и тестирование <strong>PHP</strong> скриптов и <strong>CMS</strong> на основе <strong>PHP</strong>, то вы можете самостоятельно установить и вручную настроить все необходимые компоненты, включая и <strong>PHP</strong>. Такой подход является хорошей альтернативой против использования уже готовых сборок <strong>Win+AMP</strong>, так как вы получаете полнофункциональные версии компонентов и приобретаете реальный опыт по настройке <strong>PHP</strong> и <strong>Apache</strong>. В интернете присутствуют различные инсталляторы <strong>PHP</strong>, но не один из них не одобрен <strong>PHP.net</strong>. На официальном сайте <strong>PHP</strong> (<em><strong>php.net</strong></em>) рекомендуют выполнять именно ручную инсталляцию <strong>PHP</strong> на <strong>Windows</strong> из оригинального дистрибутива PHP в <strong>zip</strong> архиве, так как это является безопасным в отношении заражения системы троянами и вирусами. Ручная инсталляция <strong>PHP</strong> на <strong>Windows</strong> позволяет хорошо изучить структуру дистрибутива <strong>PHP</strong> и назначение его основных файлов и настроек, что будет несомненным плюсом в дальнейшем, при развертывании <strong>LAMP</strong> сервера на <strong>Linux</strong> и для выполнения <strong>WEB</strong> разработки на <strong>PHP</strong>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2 id="get-php"><span class="navy-font">ШАГ 1</span> <span class="font-small">скачать дистрибутив PHP для Windows</span></h2>
+
+<p>Скачивать дистрибутив <strong>PHP</strong> для <strong>Windows</strong> нужно с <u>официального</u> сайта <strong>PHP</strong>, где на странице <a href="http://windows.php.net/download" target="_blank" title="Перейти на страницу загрузок на сайте php.net"><strong>&quot;PHP For Windows&quot;</strong></a><span class="fa fa-external-link fa-fw font-xsmall"></span> выложены сборки <strong>PHP</strong> для <strong>Windows</strong> в виде <strong>zip</strong> архива.</p>
+
+<p>В примерах этой статьи <strong>PHP</strong> будет настраиваться в&nbsp;<strong>Windows7</strong> на работу с <strong>WEB</strong> сервером <strong>Apache</strong> через его&nbsp;собственный,&nbsp;специализированный <strong>SAPI</strong> модуль вызова <strong>PHP</strong>, поэтому мною будет использован следующий дистрибутив <strong>PHP 7.1.0</strong>:</p>
+
+<pre style="background:#fafafa;border-left:4px solid #0655a4;margin:0;padding:5px 10px;">
+<strong>VC14 x64 Thread Safe</strong> (2016-Dec-02 07:19:53)
+Zip [23.28MB] <a href="http://windows.php.net/downloads/releases/php-7.1.0-Win32-VC14-x64.zip" title="ссылка на загрузку файла с php.net">http://windows.php.net/downloads/releases/php-7.1.0-Win32-VC14-x64.zip</a>
+sha1: 48b99e4aae06b6ca4933689277bd3ff836398eb8
+
+файл дистрибутива имеет название: <strong>php-7.1.0-Win32-VC14-x64.zip</strong></pre>
+
+<p>Данная сборка выполнена в <strong>Visual Studio 2015</strong> с пакетом <strong>VC14</strong> - <strong>Visual C++ 2015 x64 Redistributable Package</strong>, который должен быть установлен в вашей системе. Компоненты <strong>VC14</strong>, обычно уже имеются в системе, но если они не установлены, то <span class="blue-font">скачать</span> <span class="blue-font">VC14</span> для инсталляции можно на официальном сайте <strong>Microsoft</strong> <span class="blue-font">по ссылке</span>: <a href="https://www.microsoft.com/ru-RU/download/details.aspx?id=52685" target="_blank" title="перейти на сайт Microsoft">Распространяемый компонент Microsoft Visual C++ 2015 Update 3 RC<span class="fa fa-external-link fa-fw font-xsmall"></span></a>.</p>
+
+<p>Эта сборка является <strong>Thread Safe</strong> (<em>потоково безопасной</em>) версией и обеспечивает корректное функционирование <strong>PHP</strong> при использовании его из нескольких потоков одновременно, что как раз и нужно при работе <strong>PHP</strong> через <strong>SAPI</strong> модуль <strong>Apache</strong> на Windows. Это связано с тем, что, в зависимости от подхода и операционной системы, параллельная обработка может быть реализована через параллельные <u>процессы</u> или через параллельные <u>потоки</u>. Эти подходы имеют отличия и накладывают некоторые требования к исполнению как в PHP, так и в других программах. Так, например, <u>потоки</u> имеют общее адресное пространство, <u>процессы</u> же имеют разное. Для <u>процессов</u> вообще безразлично, что внутри каждого из них происходит т.к. они не влияют друг на друга. Поэтому, там, где PHP может исполняться в несколько параллельных <u>потоков</u>, необходимо использовать версию <strong>Thread Safe</strong> для безопасного разделения переменных окружения, адресного пространства и т.п. Если же <strong>PHP</strong> будет исполняться <u>только</u> внутри параллельных <u>процессов</u>, то можно использовать <strong>Non Thread Safe</strong> версию <strong>PHP</strong>, хотя это и не обязательно.</p>
+
+<p>О том, какой вариант <strong>PHP</strong> использовать, <strong>Thread Safe</strong> или <strong>Non Thread Safe</strong>, так же написано на странице загрузки <strong>PHP</strong> в секции под заголовком: <strong>Which version do I choose?</strong>. Там сказано, что:</p>
+
+<ul>
+	<li>если вы планируете использовать <strong>PHP</strong> на Windows через встроенный <strong>SAPI</strong> <u>модуль</u> WEB сервера <strong>Apache</strong> (или другого WEB сервера), то необходимо использовать <strong>Thread Safe</strong> версию <strong>PHP</strong>, т.к. SAPI модуля WEB серверов являются много поточными и PHP может выполняться в нескольких параллельных потоках;</li>
+	<li>если вы планируете использовать <strong>PHP</strong> <u>только</u> как внешнее <strong>CGI</strong> или <strong>CLI</strong> приложение через <strong>FastCGI</strong>/<strong>CGI</strong> или <strong>CLI</strong> (<em>в них <strong>PHP</strong> запускается <u>только</u> как параллельный <u>процесс</u></em>), то можно выбрать и <strong>Non Thread Safe</strong> версию <strong>PHP</strong>.</li>
+</ul>
+
+<p>Эта сборка содержит в своем составе <strong>SAPI</strong> модуль <strong>Apache</strong>, который взят от сборки <strong>Apache</strong> от <a href="http://www.apachelounge.com/" target="_blank"><strong>Apache Lounge</strong> http://www.apachelounge.com/</a>. Данная сборка <strong>PHP</strong> будет корректно работать как с <strong>Apache</strong> от <strong>Apache Lounge</strong>, так и с сборкой <strong>Apache 2.4.23 x64</strong> от <strong>Apache Haus</strong>, инсталляция которой на <strong>Windows</strong> была описана мною в <strong>статье</strong> и <strong>скринкасте</strong>: <a href="/ru/pages/page/install-apache-on-windows" title="Перейти к статье Установка Apache от Apache Haus на Windows"><strong>&quot;Установка Apache на Windows&quot;</strong> https://andew.ru/ru/pages/page/install-apache-on-windows</a>.</p>
+
+<p>&nbsp;</p>
+
+<div style="background:#fbe6f2;border:1px solid #d893a1;margin:0;padding:5px 10px;"><span class="fa fa-info-circle fa-fw red-font"></span>В <strong>PHP 7.1.0</strong>, все <strong>mcrypt_ *</strong> функции будут поднимать <strong>E_DEPRECATED</strong> уведомление - это пока предупреждение, что функция устарела (<em>все работает при этом</em>), а в <strong>PHP 7.2</strong> <strong>mcrypt</strong> расширение <span class="red-font">БУДЕТ УДАЛЕНО</span>, соответственно и код php <u><strong>не</strong></u> будет работать. Поэтому нужно переходить на <span class="blue-font"><strong>openssl</strong></span> <strong>php</strong> расширение, которое предоставляет все тоже, но одобрено к использованию и работает лучше.</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2 id="unpack-php-on-windows"><span class="navy-font">ШАГ 2</span> <span class="font-small">размещение PHP в Windows</span></h2>
+
+<p>Скачанный дистрибутив <strong>PHP</strong> необходимо распаковать&nbsp;с сохранением его структуры в выбранный вами каталог, который может располагаться в любом месте файловой системы (<em>не обязательно в системных каталогах Windows</em>). Путь до папки, где будет размешаться <strong>PHP</strong>, желательно выбирать как можно короче, без пробелов и других недопустимых символов. Лучше использовать только <strong>EN</strong> буквы и цифры. Например: <strong>&quot;C:\PHP&quot;</strong>.</p>
+
+<p>В статьях, связанных с темой установки <strong>PHP</strong> на <strong>Windows</strong>: <strong>&quot;<a href="/ru/pages/page/install-apache-on-windows" title="перейти к статье Установка Apache на Windows">Установка Apache на Windows</a>&quot;</strong>,&nbsp;<strong>&quot;<a href="/ru/pages/page/installing-mysql-on-windows-from-zip-archive" title="Перейти к статье Portable MySQL 5.7 в Windows">Portable MySQL 5.7 в Windows</a>&quot;</strong> и <strong>&quot;<a href="/ru/pages/page/install-gulp" title="перейти к статье Установка Gulp в WEB проект сайта">Установка Gulp в WEB проект сайта</a>&quot;</strong>, мною, во всех примерах, используется для разрешения дистрибутивов <strong>Apache</strong>, <strong>MySQL</strong> и <strong>Gulp</strong> корневой каталог <strong>&quot;Z:\WebDevelopment&quot;</strong>. Поэтому, в продолжении этих тем, для примеров этой статьи, мною будет использован для инсталяции <strong>PHP</strong> каталог вида: <strong>&quot;Z:\WebDevelopment\PHP&quot;</strong>. Таким образом, эта статья дополнит предыдущие и объединит их вокруг темы по самостоятельной организации собственного <strong>WinAMP</strong> сервера на <strong>Windows</strong>.</p>
+
+<p>Для удобства работы с <strong>PHP</strong> через командную строку нужно добавить в конец&nbsp;системной переменной <strong>PATH</strong>, через точку с запятой, путь к директории с инсталляцией <strong>PHP</strong>, например, <span style="border-radius:2px;border:1px solid #eee;margin:0;padding:5px 10px;">;Z:\WebDevelopment\PHP</span>. Это можно сделать в настройках <strong>Windows</strong>: <strong>Computer</strong> &gt; <strong>Properties</strong> &gt; <strong>Advanced</strong> &gt; <strong>System Properties</strong> &gt; <strong>System Variables</strong>, где выбрать редактирование&nbsp;системной переменной <strong>Path</strong>. После этого <strong>PHP</strong> станет доступен из командной строки в любом месте файловой системы.</p>
+
+<p>&nbsp;</p>
+
+<h3 id="php-distributive">Структура файлов и каталогов дистрибутива PHP7 для Windows</h3>
+
+<p>PHP 7 package structure с комментариями к файлам:</p>
+
+<pre style="background:#fafafa;border-left:4px solid #0655a4;margin:0;padding:5px 10px;">
+\<strong>php</strong>
+   |
+   +--dev
+   |  |
+   |  |-php7ts.lib
+   |
+   +--ext                 <em>-- extension DLLs for PHP</em>
+   |  |
+   |  |-php_bz2.dll
+   |  |
+   |  |-php_cpdf.dll
+   |  |
+   |  |-..
+   |
+   +--extras
+   |  |
+   |  +--mibs             <em>-- support files for SNMP</em>
+   |  |
+   |  +--openssl          <em>-- support files for Openssl</em>
+   |  |
+   |  +--pdf-related      <em>-- support files for PDF</em>
+   |  |
+   |  |-mime.magic
+   |
+   +--pear                <em>-- initial copy of PEAR</em>
+   |
+   |
+   |-go-pear.bat          <em>-- PEAR setup script для подключения PEAR репозитория PHP</em>
+   |
+   |-fdftk.dll
+   |
+   |-..
+   |-deplister.exe        <em>-- <strong>CLI</strong> утилита для определения зависимостей разных модулей, которые можно подключить в PHP</em>
+   |-php-cgi.exe          <em>-- <strong>CGI</strong>/<strong>FastCGI</strong> исполняемый файл для вызова <strong>PHP</strong> через <strong>FastCGI</strong> или <strong>CGI</strong></em>
+   |-phpdbg.exe           -- <em>интерактивный PHP debugger</em>
+   |-php-win.exe          <em>-- исполняемый файл для вызова PHP из оконных приложений без использования командной строки</em>
+   |
+   |-php.exe              <em>-- <strong>CLI</strong> исполняемый файл для вызова PHP только из командной строки</em>
+   |
+   |-..
+   |
+   |-php.ini-development  <em>-- development php.ini settings - заготовка для <strong>php.ini</strong></em>
+   |
+   |-php.ini-production   <em>-- recommended php.ini settings for production - заготовка для <strong>php.ini</strong></em>
+   |
+   |-php5activescript.dll
+   |
+   |-php7apache2_4.dll     <em>-- Apache 2.4.x module <strong>SAPI</strong> - модуль <strong>Apache</strong> для работы с <strong>PHP</strong></em>
+   |
+   |-..
+   |
+   |-php5ts.dll           <em>-- core PHP DLL</em>
+   |
+   |-php7ts.dll  <em>-- все CGI, CLI бинарники и модули веб-сервера требуют обязательного наличия этой библиотеки т.к. используют ее</em></pre>
+
+<p>&nbsp;</p>
+
+<h2 id="php-install-tip">Общие замечания по установке PHP</h2>
+
+<p>Перед началом установки, нужно понимать для каких целей и задач может быть использован <strong>PHP</strong>.</p>
+
+<h3 id="php-usage">Выделяют три направления использования PHP</h3>
+
+<ul>
+	<li>Веб-сайты и веб-приложения, где <strong>PHP</strong> используется как язык сценариев на стороне сервера для генерации динамического web содержимого;</li>
+	<li>Командная строка сценариев, где <strong>PHP</strong> вызывается через командную строку (<em><strong>CLI</strong></em>) и выполняет различные сценарии, как на локальном компьютере, так и на сервере;</li>
+	<li>Desktop (<em><strong>GUI</strong></em>) приложения, где <strong>PHP</strong> используется для создания оконных приложений.</li>
+</ul>
+
+<p>Не смотря на то, что наибольшее распространение имеет первый вариант использования PHP для веб приложений, PHP может с успехом применяться и для написания сценариев командной строки. Например, можно написать сценарии для генерации изображений, обработки текстовые файлов, системные манипуляции и т.п. Также, в PHP можно создавать приложения с графическим интерфейсом с помощью PHP-GTK расширения.</p>
+
+<p>&nbsp;</p>
+
+<h3 id="php-with-web-server">Подключение PHP к WEB серверу</h3>
+
+<p>Для первого, наиболее распространенного варианта использования <strong>PHP</strong>, как языка программирования web приложений, необходимо организовать связь между <strong>PHP</strong> и <strong>WEB</strong> сервером. PHP имеет два способа подключения к WEB серверу:</p>
+
+<h4 id="php-as-sapi-isapi">PHP как SAPI или ISAPI модуль WEB сервера</h4>
+
+<p>В качестве собственного <strong>PHP</strong> модуля <strong>SAPI</strong> (<strong>Server Application Programming Interface</strong>) или <strong>ISAPI</strong> (<em><strong>Internet Server Application Programming Interface</strong></em>) для различных <strong>WEB</strong> серверов, которые представляет собой интерфейс прикладного программирования (<em>API</em>), расширявший возможности веб-сервера в части взаимодействия с PHP. Это подход реализуется через прямой <strong>SAPI</strong>/<strong>ISAPI</strong> модуль самого <strong>WEB</strong> сервера, который поставляется с <strong>PHP</strong> или с <strong>WEB</strong> сервером и реализует взаимодействие между веб-сервером и языком программирования <strong>PHP</strong> напрямую. Использование прямого модуля для конкретного web сервера является самым эффективным и высокопроизводительным&nbsp;(<em>при большом количестве запросов</em>) способом взаимодействия между web сервером и <strong>PHP</strong>. Такие <strong>SAPI</strong> модуля имеются для <strong>WEB</strong> серверов: <strong>Apache</strong>, <strong>Microsoft Internet Information Server</strong>, <strong>Netscape</strong> и <strong>IPlanet</strong>. Многие другие серверы имеют поддержку <strong>ISAPI</strong>, например, <strong>OmniHTTPd</strong>. Для <strong>Apache</strong> работа с <strong>PHP</strong> через <strong>SAPI</strong> модуль, из-за длительного их совместного сотрудничества, является самым распространенным и эффективным решением. В данную сборку <strong>PHP</strong> <strong>php-7.1.0-Win32-VC14-x64</strong> для <strong>Windows</strong> уже включен модуль <strong>SAPI</strong> для <strong>Apache</strong> с названием файла <strong>php7apache2_4.dll</strong>. Несмотря на удобство и скорость работы такой подход имеет и свои недостатки. Например, запуск <strong>php</strong> скриптов от имени <strong>web</strong> сервера, а не от имени пользователя владельца файла. Но для Apache в <strong>Ubuntu</strong> этот недостаток можно устранить использованием пакета <strong>libapache2-mpm-itk</strong> (<em>multiuser module for Apache</em>). Это дополнительный модуль для Apache, который есть в <strong>universe</strong> репозиториях <strong>Ubuntu</strong> и он позволяет <strong>Apache</strong> запускать <strong>PHP</strong> скрипты от имени владельца файла.</p>
+
+<h4 id="php-as-fastcgi-cgi">PHP как внешнее FastCGI/CGI приложение</h4>
+
+<p><strong>FastCGI</strong> (<em><strong>Fast Common Gateway Interface</strong></em>) и <strong>CGI</strong> (<a href="https://ru.wikipedia.org/wiki/CGI" target="_blank" title="Common Gateway Interface описание на wikipedia.org"><em><strong>Common Gateway Interface</strong> - общий интерфейс шлюза<span class="fa fa-external-link fa-fw font-xsmall"></span></em></a>) интерфейсы - это второй вариант взаимодействия между <strong>WEB</strong> сервером и <strong>PHP</strong>. <strong>FastCGI</strong> это клиент серверный протокол взаимодействия веб сервера и приложения, который является продолжением развития технологии <strong>CGI</strong>. Этот протокол предоставляет общий и универсальный способ взаимодействия <strong>PHP</strong> с любым <strong>WEB</strong> сервером, и в новой версии не уступает по скорости прямому модулю <strong>SAPI</strong>. Для некоторых серверов, например, <strong>IIS</strong>, <strong>FastCGI</strong> значительно более стабилен и может быть быстрее, чем модуль <strong>ISAPI</strong>. Если <strong>PHP</strong> не имеет модуль поддержки для вашего веб сервера, то вы всегда можете использовать <strong>PHP</strong> через <strong>FastCGI</strong> или <strong>CGI</strong> интерфейсы. Для использования <strong>PHP</strong> с web сервером через <strong>FastCGI</strong>/<strong>CGI</strong> понадобиться настроить веб сервер на обработку запросов через файл-обработчик <strong>php-cgi.exe</strong>, который входит и в дистрибутив <strong>PHP</strong> для <strong>Windows</strong>. Использование <strong>FastCGI</strong> имеет много преимуществ и является более экономичным и безопасным подходом в отношении прав доступа и возникновения ошибок в работе скриптов. Единственным, незначительным и относительным недостатком для <strong>FastCGI</strong> является то, что он может уступать в скорости, при большом количестве запросов, по сравнению с <strong>SAPI</strong> модулем <strong>Apache</strong>. Для других же <strong>web</strong> серверов <strong>FastCGI</strong> может быть даже более лучшим выбором.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2 id="php-configuration-php-ini-create"><span class="navy-font">ШАГ 3</span> <span class="font-small">создание php.ini</span></h2>
+
+<p>Следующий шаг, после развертывания дистрибутива <strong>PHP</strong>, это создание файла&nbsp;(<em>или файлов</em>) конфигурации <strong>PHP</strong>, который для <strong>Windows</strong>, в большинстве случаев, имеет название <span class="blue-font"><strong>php.ini</strong></span> и,&nbsp;в основном, располагается в каталоге с инстанцией <strong>PHP</strong>. Но возможны так же и другие варианты названия и расположения (<em>см. ниже</em>). Файл <strong>php.ini</strong> является основным конфигом <strong>PHP</strong> в <strong>Windows</strong> и, в зависимости от способа использования <strong>PHP</strong>, читается интерпретатором <strong>PHP</strong>, или каждый раз при старте/вызове <strong>PHP</strong>, или только одни раз при старте web сервера.</p>
+
+<ul>
+	<li>Если <strong>PHP</strong> вызывается и работает как <strong>SAPI</strong> <u>модуль</u> <strong>WEB</strong> <u>сервера</u>, то файл <strong>php.ini</strong> <u>читается только один раз</u>, когда <strong>WEB</strong> сервер <u>стартует</u>. И пока <strong>WEB</strong> сервер работает, файл <strong>php.ini</strong> больше <u>не</u> перечитывается. Поэтому, если <strong>PHP</strong> у вас работает как <u>модуль</u> сервера, не забывайте пере запускать <strong>web</strong> сервер после внесения изменений в <strong>php.ini</strong>;</li>
+	<li>Если же <strong>PHP</strong> работает как внешнее <strong>CGI</strong> или <strong>CLI</strong> приложение через <strong>FastCGI</strong>/<strong>CGI</strong> или <strong>CLI</strong>, то файл <strong>php.ini</strong> <strong>перечитывается</strong> заново <u>при каждом вызове</u> и обращению к <strong>PHP</strong>.</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><a href="http://php.net/manual/ru/configuration.file.php" target="_blank" title="Описание файла конфигурации на php.net">php.ini<span class="font-xsmall"><span class="fa fa-external-link fa-fw font-xsmall"></span></span></a></h3>
+
+<p>При инсталяции <strong>PHP</strong> на <strong>Windows</strong>, в основном, используют для конфигурации <strong>PHP</strong> один конфиг файл с именем <span class="blue-font"><strong>php.ini</strong></span>, который располагают в каталоге установки <strong>PHP</strong>. Однако, нужно так же понимать, что одна инсталляция <strong>PHP</strong> может одновременно использоваться и как <strong>SAPI</strong> модуль веб сервера и как внешнее <strong>FastCGI</strong>/<strong>CGI</strong> или <strong>CLI</strong> приложение. Для таких случаев, многоцелевого использования PHP, можно задать <u>разные</u> файлы конфигурации <strong>PHP</strong> как по <u>имени</u> (<strong>php.ini</strong> или <strong>php-SAPI.ini</strong>), <u>расположению</u>, так и по их <u>количеству</u>. Например, для <strong>SAPI</strong> модуля веб сервера, можно сделать отдельный <strong>php.ini</strong> файл (<em>название файла может быть и вида php-SAPI.ini, см. ниже</em>) и разместить его в каталоге <strong>web</strong> сервера или сайта, указав <strong>PHPIniDir</strong> директиву для <strong>Apache</strong>. Тогда, при вызове <strong>PHP</strong> через <strong>SAPI</strong> модуль <strong>Apache</strong>, будет использоваться этот конфиг, а при вызове <strong>PHP</strong> через <strong>FastCGI</strong>/<strong>CGI</strong> или <strong>CLI</strong> будет использоваться другой конфиг, например, <strong>php.ini</strong> из каталога инсталяции <strong>PHP</strong>.</p>
+
+<p>&nbsp;</p>
+
+<h4 id="php-configuration-user-php-sapi-ini">php.ini и php-SAPI.ini</h4>
+
+<p>Имя файла конфигурации <strong>php.ini</strong> используется в <strong>PHP</strong> на <strong>Windows</strong> по умолчанию. Именно конфиг с именем <span style="background:#fafafa;border-radius:2px;border:1px solid #eee;margin:0;padding:5px 10px;"><strong>php.ini</strong></span> <strong>PHP</strong> будет искать, если отсутствуют другие варианты. Однако, можно использовать другое имя файла конфигурации <strong>PHP</strong>, задав его в формате <strong>php-SAPI.ini</strong>, где часть <strong>SAPI</strong> это имя вызывающего <strong>PHP</strong> модуля или интерфейса. Это имя модуля/интерфейса можно узнать при помощи <strong>PHP</strong> функции <a href="http://php.net/manual/ru/function.php-sapi-name.php" target="_blank" title="К описанию функции php_sapi_name на php.net"><strong>php_sapi_name()<span class="fa fa-external-link fa-fw font-xsmall"></span></strong></a>, которая вернет строку с именем вызвавшего <strong>PHP</strong> модуля или интерфейса. Могут быть значения вида: <strong>apache</strong>, <strong>apache2filter</strong>, <strong>apache2handler</strong>, <strong>cgi-fcgi</strong>, <strong>cli</strong>, <strong>cli-server</strong> и т.п. Соответственно, узнав имя вызывающего <strong>PHP</strong> модуля или интерфейса для конкретного варианта использования <strong>PHP</strong>, вы можете создать для него отдельный конфиг, например, <strong>php-cli.ini</strong>, <strong>php-apache.ini</strong>. Тогда, при вызове <strong>PHP</strong> через этот модуль или интерфейс, <strong>PHP</strong> будет сначала использовать соответствующий ему конфиг, если он существует. Если такого файла нет в указанных искомых расположениях, то будет использоваться <strong>php.ini</strong> имя файла конфига. Иными словами, <strong>PHP</strong> сначала всегда пытается найти и использовать конфиг с именем, соответствующий вызывающему модулю или интерфейсу, и только при отсутствии такового, использует конфиг с именем <strong>php.ini</strong>.</p>
+
+<p>&nbsp;</p>
+
+<h4 id="php-configuration-user-ini">.user.ini</h4>
+
+<p>С версии <strong>PHP 5.3.0</strong> добавлена поддержка <strong>PHP</strong> <strong>INI</strong> файлов <a href="http://php.net/manual/ru/configuration.file.per-user.php" target="_blank" title="к руководству на php.net"><strong>.user.ini<span class="fa fa-external-link fa-fw font-xsmall"></span></strong></a> уровня каталога, по аналогии с <strong>.htaccess</strong> конфигами в <strong>Apache</strong>. Эти файлы ищутся и применяются только для <strong>CGI</strong>/<strong>FastCGI</strong> вызова <strong>PHP</strong>, когда, помимо основного <strong>php.ini</strong> файла, <strong>PHP</strong> дополнительно <u>ищет</u> <strong>INI</strong> файлы в <u>каждой</u> директории, начиная с директории <u>вызываемого</u> <strong>PHP</strong> файла и далее&nbsp;по каталогам в верх до <u>корневой</u> директории из <strong>$_SERVER[&#39;DOCUMENT_ROOT&#39;]</strong>. Если запрошенный <strong>PHP</strong> файл находится <u>вне</u> корневой директории, то сканируется <strong>только</strong> директория этого запрошенного файла. В таких, <strong>.user.ini</strong> <strong>PHP</strong> конфигах, уровня <u>директории</u>, могут применяться только <strong>PHP</strong> директивы режимов <strong>PHP_INI_PERDIR</strong> и <strong>PHP_INI_USER</strong> (<em>см. описание режимов ниже</em>).</p>
+
+<p><strong>PHP</strong> директивы<strong> user_ini.filename</strong> и <strong>user_ini.cache_ttl</strong> настраивают использование этих конфигов уровня директории:</p>
+
+<ul>
+	<li><strong>user_ini.filename</strong> - задет имя файла, который PHP будет искать в каждой директории. Если значение директивы <u>пустая</u> строка, то поиск файла не производится. По умолчанию значение <strong>user_ini.filename = &quot;.user.ini&quot;</strong>. Если нужно, чтобы <strong>PHP</strong> <u>не</u> выполнял поиск INI файла в директориях, то установите эту директиву как <strong>user_ini.filename =</strong></li>
+	<li><strong>user_ini.cache_ttl</strong> - задет частоту обновления пользовательского INI файла каталога. По умолчанию, директива имеет значение<strong> user_ini.cache_ttl = 300</strong>, что соответствует 5 минутам.</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h4 id="php-configuration-phpini-location">Последовательность поиска конфига PHP в локализациях</h4>
+
+<p>Выше был рассмотрен принцип выбора имени конфига <strong>PHP</strong>. Здесь будет уже рассмотрен порядок и механизм того, как <strong>PHP</strong> определяет <strong>месторасположение</strong> конфигурационного файла для разных вариантов вызова PHP.</p>
+
+<p><strong>PHP</strong> на <strong>Windows</strong> ищет файл(<em>файлы</em>) <strong>php.ini</strong> и <strong>php-SAPI.ini</strong> по порядку в следующих локализация:</p>
+
+<ul>
+	<li>если <strong>PHP</strong> вызван как <strong>SAPI</strong> модуль <strong>web</strong> сервера, то путь к файлу <strong>php-SAPI.ini/php.ini</strong> будет браться из&nbsp;значения соответствующей директивы конфига <strong>web</strong> сервера. Для <strong>Apache</strong> это директива <strong>PHPIniDir</strong>, в которой задается путь к каталогу с файлом конфигурации <strong>PHP</strong>;</li>
+	<li>если <strong>PHP</strong> вызван из <strong>CGI</strong> и <strong>CLI</strong>, то путь будет браться из параметра <strong>-c</strong> опции для <strong>CGI</strong> и <strong>CLI</strong>, если такой параметр указан;</li>
+	<li>в системной переменной окружения <strong>PHPRC</strong>. Для Apache, при работе <strong>PHP</strong> как <strong>CGI</strong>, ее можно задать директивой <span class="navy-font"><strong>SetEnv</strong></span> <strong>PHPRC</strong>. Что бы создать эту переменную&nbsp;для операционной системы и добавить в нее путь к каталогу с конфигом <strong>PHP</strong> в <strong>Windows</strong> нужно зайти в <strong>Start</strong> -&gt; <strong>Settings</strong> -&gt; <strong>Control Panel</strong> -&gt; <strong>System</strong>, перейти в вкладку <strong>Advanced</strong>, и нажать кнопку <strong>&#39;Environment Variables&#39;</strong> и перейти в <strong>&#39;System variables&#39;</strong> <strong>панель</strong>, где выбрать создать <strong>&#39;New&#39;</strong> переменную, и задать для нее имя <strong>PHPRC</strong> и значение пути до каталога с файлом <strong>php.ini</strong>, например,&nbsp; <strong>C:\php</strong>, сохранить и перезагрузить систему. Этот вариант позволяет указать каталог расположения <u>дефолтового</u> <strong>php-SAPI.ini</strong> и <strong>php.ini</strong> файлов конфигурации <strong>PHP</strong>. Обычно, это каталог инсталяции <strong>PHP</strong> на <strong>Windows</strong>.</li>
+	<li>в ключах реестра KEY_LOCAL_MACHINE\SOFTWARE\PHP\IniFilePath и других;</li>
+	<li>в текущей рабочей директории, кроме вызова через <strong>CLI</strong></li>
+	<li>в директории <strong>web</strong> сервера (<em>для варианта вызова через <strong>SAPI</strong> модуль</em>) или в директории инсталяции <strong>PHP</strong> для вариантов вызова через <strong>CGI</strong>, <strong>CLI</strong>, <strong>GUI</strong>. Это, как раз и есть, наиболее <u>распространенный</u> вариант расположения конфигов <strong>PHP</strong>.</li>
+	<li>в директории <strong>C:\windows</strong></li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h4 id="php-configuration-phpini">Создание php.ini</h4>
+
+<p>Учитывая вышеописанную логику поиска имени и расположения конфигов <strong>PHP</strong>, получается, что самым простым будет использование файла конфигурации с именем <strong>php.ini</strong>, который будет располагаться в каталоге инсталяции <strong>PHP</strong> на <strong>Windows</strong>. При таком подходе <strong>PHP</strong> будет использовать одни конфиг <strong>php.ini</strong> в дефолтовом расположении для всех вариантов вызова. Соответственно, нужно будет указать только путь к инсталяции <strong>PHP</strong> в директиве <strong>PHPIniDir</strong> <strong>WEB</strong> сервера <strong>Apache</strong>, для случая запуска <strong>PHP</strong> через его модуль. Так же, нужно убедиться, что <strong>Apache</strong> имеет права на чтение файла <strong>php.ini</strong>. Других настроек для указания пути к конфигу <strong>PHP</strong> в этом варианте не потребуется.</p>
+
+<p>Файл <strong>php.ini</strong> можно создать на основе файлов примеров <strong>php.ini-development</strong> и <strong>php.ini-production</strong>, входящих в дистрибутив <strong>PHP</strong> для <strong>Windows</strong>. Более предпочтительнее использовать файл <strong>php.ini-production</strong>, т.к. он имеет оптимизированные настройки по умолчанию для лучшей производительности и безопасности, и <strong>PHP</strong> будет прекрасно работать с этими настройками. Создайте из этого файла (<strong>php.ini-production</strong>) <u>копированием</u> и <u>переименованием</u> свой <strong>php.ini</strong> конфиг в каталоге вашей инсталляции <strong>PHP</strong>. Для <u>примеров</u> этой статьи и скринкаста путь для <strong>php.ini</strong> будет как &quot;<strong>Z:\WebDevelopment\PHP\php.ini</strong>&quot;.</p>
+
+<p>Рекомендуется прочесть <strong>php.ini</strong> файл, так как он хорошо комментирован. Обратите внимание, что в этом файле директивы <strong>display_errors</strong> и <strong>magic_quotes_gpc</strong> выключены (<strong>off</strong>). В секции <strong>Windows extensions</strong> файла <strong>php.ini</strong> можно настроить загрузку модулей <strong>PHP</strong>, с которыми вы хотите запускать <strong>PHP</strong>. По умолчанию, для модулей <strong>PHP</strong> на <strong>Windows</strong> задан <strong>extension_dir = &quot;ext&quot;</strong> каталог. Нужно заметить, что модуля <strong>PHP</strong> можно подключать и загружать не только через конфигурационный файл <strong>php.ini</strong>, но и <u>динамически</u> в скриптах, по ходу их исполнения при помощи <strong>PHP</strong> функции <a href="http://php.net/manual/ru/function.dl.php" target="_blank" title="перейти к описанию функции dl() на php.net"><strong>dl()<span class="fa fa-external-link fa-fw font-xsmall"></span></strong></a>. Для этого функция <strong>dl()</strong> должна быть разрешена в <strong>php.ini</strong> (<em>по умолчанию <strong>enable_dl = Off</strong></em>). В <strong>php.ini-production</strong> уже оптимально настроены необходимые модуля и поэтому, в начале, лучше проверить работу <strong>PHP</strong> с этими дефолтовыми настройками. Если <strong>PHP</strong> будет работать нормально с этими настройками по умолчанию, то уже можно будет выполнять активацию других, необходимых вам дополнительных модулей и директив. Лучше это делать по шагам, выполняя проверку работы <strong>PHP</strong> после каждого изменения блока настроек, что бы иметь возможность быстро найти причину, если <strong>PHP</strong> не запуститься или будет работать не корректно. Если вам приходится постоянно выполнять много изменений в конфигурационных файлах (<em>не только PHP, но и других</em>), то можно порекомендовать создать для конфигов отдельный репозиторий <strong>GIT</strong>, что бы было удобно отслеживать и протоколировать все изменения. Это очень хорошая практика и часто используется на продуктивных серверах.</p>
+
+<p>&nbsp;</p>
+
+<h3 id="php-configuration">Способы изменения конфигурации PHP</h3>
+
+<p><a href="http://php.net/manual/ru/ini.list.php" target="_blank" title="К списку директив конфигурации PHP на php.net">Конфигурационные директивы PHP<span class="fa fa-external-link fa-fw font-xsmall"></span></a> могут быть установлены и/или изменены в файлах конфигурации php (<em>php.ini и т.п.</em>), в PHP скриптах, в конфигах Apache. Что бы понять, где и на каком уровне, может быть задана та или иная конфигурационная директива PHP, необходимо знать режим этой директивы. Режим директивы определяет где (<em>php.ini или php скрипт или конфиг Apache</em>) эта директива может быть установлена или изменена. В <strong>PHP</strong> имеются следующие режимы директив.</p>
+
+<h4><a href="http://php.net/manual/ru/configuration.changes.modes.php" target="_blank" title="к описанию режимов PHP_INI_ на php.net">Режимы директив PHP<span class="fa fa-external-link fa-fw font-xsmall"></span></a></h4>
+
+<ul>
+	<li><strong>PHP_INI_USER</strong> - директива может быть установлена только в <u>пользовательских</u> php <strong>скриптах</strong> при помощи функции&nbsp; <strong>ini_set()</strong>, в пользовательском <strong>.user.ini</strong>;</li>
+	<li><strong>PHP_INI_PERDIR</strong> - директива может быть установлена только в <strong>php.ini</strong>(<em>главный конфиг</em>), <strong>httpd.conf</strong> и/или <strong>.htaccess</strong>;</li>
+	<li><strong>PHP_INI_SYSTEM</strong> - директива может быть установлена только в&nbsp; <strong>php.ini</strong> и/или <strong>httpd.conf</strong>;</li>
+	<li><strong>PHP_INI_ALL</strong> - директива может быть задана в <strong>любом</strong> месте</li>
+</ul>
+
+<p>Конфигурационные<a href="http://php.net/manual/ru/ini.php" target="_blank" title="Директивы php.ini на php.net"> директивы PHP<span class="fa fa-external-link fa-fw font-xsmall"></span></a> можно задать и /или изменить в:</p>
+
+<ul>
+	<li>в <strong>главном</strong> <strong>php.ini</strong> файле для данного вызова <strong>PHP</strong>;</li>
+	<li>в <strong>php-SAPI.ini</strong> файле для соответствующего&nbsp;вызывающего модуля <strong>SAPI</strong>;</li>
+	<li>в локальном файле <strong>.user.ini</strong> каталога (<em>только для CGI/FastCGI SAPI</em>);</li>
+	<li>в <strong>php</strong> скриптах при их выполнении (<em><strong>ini_set()</strong></em>);</li>
+	<li>в конфигах <strong>Apache</strong> (<em>httpd.conf, .htaccess</em>);</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h4 id="php-settings-ini-set">ini_set() - настройка PHP в скриптах</h4>
+
+<p>Функция <strong>PHP</strong> <a href="http://php.net/manual/ru/function.ini-set.php" target="_blank" title="к описанию на php.net"><strong>ini_set</strong>()<span class="fa fa-external-link fa-fw font-xsmall"></span></a> позволяет выполнять установку и/или изменение значений конфигурационных директив <strong>PHP</strong> с режимом <strong>PHP_INI_USER</strong> в <strong>php</strong> скриптах при их исполнении. Заданная при помощи этой функции настройка будет жить <u>только</u> пока исполняется сделавший ее PHP скрипт. По завершению работы скрипта настройка будет восстановлена к исходному состоянию.</p>
+
+<p>&nbsp;</p>
+
+<h4 id="php-settings-apache-conf">Настройка PHP в конфигах Apache</h4>
+
+<p>Когда <strong>PHP</strong> используется как <strong>SAPI</strong> модуль <strong>Apache</strong> возможно выполнять изменение настроек <strong>PHP</strong> не только через <strong>php.ini</strong> файлы и <strong>php</strong> скрипты, но и напрямую в <u>конфигурационных</u> файлах <strong>Apache</strong> разного уровня - <strong>httpd.conf</strong>, <strong>httpd-vhosts.conf</strong>, <strong>.htaccess </strong>и т.д. В конфигах <strong>Apache</strong> могут быть установлены таким образом только директивы <strong>PHP</strong>, соответствующие <u>режимам</u> <strong>PHP_INI_ALL</strong>, <strong>PHP_INI_PERDIR</strong> и <strong>PHP_INI_SYSTEM</strong>.</p>
+
+<p><a href="http://php.net/manual/ru/configuration.changes.php" target="_blank" title="к описанию на php.net">Директивы <strong>Apache</strong> для изменения настроек <strong>PHP</strong><span class="fa fa-external-link fa-fw font-xsmall"></span></a>:</p>
+
+<ul>
+	<li><strong>php_value</strong> <span class="green-font"><strong>name</strong></span> <span class="red-font"><strong>value</strong></span> - позволяет установить значение(<em><u>кроме</u> <strong>true/false</strong></em>) для директивы <strong>PHP</strong> уровня/режима <strong>PHP_INI_ALL</strong> и <strong>PHP_INI_PERDIR</strong>. Для сброса значения ставят <strong>none</strong>;</li>
+	<li><strong>php_flag</strong> <span class="green-font"><strong>name</strong></span> <span class="red-font"><strong>on|off</strong></span> - позволяет установить логическое значение для директивы <strong>PHP</strong> уровня <strong>PHP_INI_ALL</strong> и <strong>PHP_INI_PERDIR</strong>;</li>
+	<li><strong>php_admin_value</strong> <span class="green-font"><strong>name</strong></span> <span class="red-font"><strong>value</strong></span> - позволяет установить значение(<em><u>кроме</u> <strong>true/false</strong></em>) для директивы <strong>PHP</strong> уровня <strong>PHP_INI_ALL</strong> и <strong>PHP_INI_PERDIR</strong>. Для сброса значения ставят <strong>none</strong>. Директива <strong>не</strong> допустима в <strong>.htaccess</strong> (<em>игнорируется</em>) и, будучи ранее установленной, <strong>не</strong> может быть переопределена в <strong>.htaccess</strong> или в <strong>ini_set()</strong> функции <strong>php</strong> скрипта;</li>
+	<li><strong>php_admin_flag</strong> <span class="green-font"><strong>name</strong></span> <span class="red-font"><strong>on|off</strong></span> - позволяет установить логическое значение для директивы <strong>PHP</strong> уровня <strong>PHP_INI_ALL</strong> и <strong>PHP_INI_PERDIR</strong>. Директива <strong>не</strong> допустима в <strong>.htaccess</strong> (<em>игнорируется</em>) и, будучи ранее установленной, <strong>не</strong> может быть переопределена в <strong>.htaccess</strong> или в <strong>ini_set()</strong> функции <strong>php</strong> скрипта.</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h4 id="php-settings-virtualhost">Пример настроек PHP в конфиге виртуального хоста Apache.</h4>
+
+<p>В примере использованы директивы <strong>Apache</strong> <strong>php_admin_value</strong> и <strong>php_admin_flag</strong>, следовательно, сделанные через них настройки PHP <strong>не</strong> могут быть изменены пользователем в <strong>.htaccess</strong> или в <strong>ini_set()</strong>. Таким образом, <u>администратор</u> сервера может повысить безопасность сайта и не опасаться, что настройки, сделанные им для виртуального хоста будет переопределены на уровне каталога сайта его пользователем.</p>
+
+<pre style="background:#fafafa;border-left:4px solid #0655a4;margin:0;padding:5px 10px;">
+<span class="sm-xorange-font"># Пример настройки виртуального хоста Apache для <strong>test.ru</strong> домена</span>
+&lt;<span class="navy-font"><strong>VirtualHost</strong></span> <strong>127.0.0.1:80</strong>&gt;
+    <span class="blue-font">DocumentRoot</span> <span class="red-font">&quot;Z:/WebDevelopment/Projects/Site1&quot;</span>
+    <span class="blue-font">ServerName</span> <strong>test.ru</strong>
+    &lt;<span class="navy-font"><strong>Directory</strong></span> <span class="red-font">&quot;Z:/WebDevelopment/Projects/Site1&quot;</span>&gt;
+        <span class="blue-font">Options</span> <span class="green-font">-ExecCGI -Indexes -Includes +FollowSymLinks</span>
+        <span class="blue-font">AllowOverride</span> <span class="green-font">All</span>
+        <span class="blue-font">AddDefaultCharset</span> <span class="green-font">UTF-8</span>
+        <span class="blue-font">DirectoryIndex</span> <span class="green-font">index.php index.html</span>
+        <span class="blue-font">Require</span> <span class="green-font">all granted</span>
+
+        <span class="sm-xorange-font"># <strong>пример настройки PHP в конфиге виртуального хоста Apache</strong></span>
+        &lt;<span class="navy-font"><strong>IfModule mod_php7.c</strong></span>&gt;
+            <span class="sm-xorange-font"># Запрещаем php за пределы директории сайта</span>
+            <span class="blue-font">php_admin_value</span> <strong><span class="green-font">open_basedir</span></strong> <span class="red-font">&quot;Z:/WebDevelopment/Projects/Site1&quot;</span>
+            <span class="blue-font">php_admin_value</span> <span class="green-font"><strong>doc_root</strong></span> <span class="red-font">&quot;Z:/WebDevelopment/Projects/Site1&quot;</span>
+
+            <span class="sm-xorange-font"># Сохраняем временные файлы и сессии в корневом каталоге в папке tmp</span>
+            <span class="blue-font">php_admin_value</span> <strong><span class="green-font">upload_tmp_dir</span></strong> <span class="red-font">&quot;Z:/WebDevelopment/Projects/Site1/temp&quot;</span>
+            <span class="blue-font">php_admin_value</span> <strong><span class="green-font">session.save_path</span></strong> <span class="red-font">&quot;Z:/WebDevelopment/Projects/Site1/temp&quot;</span>
+
+            <span class="sm-xorange-font"># Отключаем возможность include по URL</span>
+            <span class="blue-font">php_admin_flag</span> <strong><span class="green-font">allow_url_include</span></strong> off
+
+            <span class="sm-xorange-font"># Отключаем возможность динамической загрузки модулей PHP</span>
+            <span class="blue-font">php_admin_flag</span> <strong><span class="green-font">enable_dl</span></strong> off
+        &lt;<span class="navy-font">/<strong>IfModule</strong></span>&gt;
+    &lt;/<span class="navy-font"><strong>Directory</strong></span>&gt;
+&lt;/<span class="navy-font"><strong>VirtualHost</strong></span>&gt;</pre>
+
+<p>Данный пример с настройками витального хоста можно рекомендовать как для разработческого так и продуктивного однопользовательского web сервера.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2 id="php-cli-call"><span class="navy-font">ШАГ 4</span> <span class="font-small">CLI вызов PHP</span></h2>
+
+<p>После развертывания дистрибутива <strong>PHP</strong>, создания <strong>php.ini</strong> файла и указания пути к инсталяции <strong>PHP</strong> в системной переменной <strong>PATH</strong>, установка <strong>PHP</strong> на <strong>Windows</strong> считаться выполненной. Теперь можно использовать <strong>PHP</strong> через <strong>CLI</strong>, обратившись к бинарнику <strong>php.exe</strong> (<em><strong>CLI</strong> исполняемый файл для вызова <strong>PHP</strong> только из командной строки</em>) в командной строке.</p>
+
+<h4 id="php-cli-run">Пример CLI вызова PHP в командной строке Windows</h4>
+
+<p>В примере ниже продемонстрирован <strong>CLI</strong> вызов <strong>PHP</strong> и выполнение команды <strong>&gt;php --help</strong>, которая выводит краткий <strong>help</strong> по использованию <strong>PHP</strong> через <strong>CLI</strong>. Если вы прописали в системной переменой <strong>PATH</strong> путь до инсталяции <strong>PHP</strong>, как было указано выше, то вы можете открыть командную строку в любом месте файловой системы и обращаться к <strong>PHP</strong>. Если же у вас <u>не</u> задан в <strong>PATH</strong> путь до инсталяции <strong>PHP</strong>, то командную строку необходимо открыть в каталоге с инсталляцией <strong>PHP</strong>, где расположен файл <strong>php.exe</strong> или добавить тогда этот путь в команду вызова <strong>PHP</strong>.</p>
+
+<p><span class="fa fa-info-circle fa-fw orange-font"></span>Примеры в статье и скринкасте приводятся с учетом того, что в <strong>PATH</strong> уже прописан путь до каталога инсталяции <strong>PHP</strong>.</p>
+
+<pre style="background:#000;color:#fff;margin:0;padding:5px 10px;">
+Z:\WebDevelopment\Projects\Site1&gt;php -h
+
+Usage: php [options] [-f] &lt;file&gt; [--] [args...]
+   php [options] -r &lt;code&gt; [--] [args...]
+   php [options] [-B &lt;begin_code&gt;] -R &lt;code&gt; [-E &lt;end_code&gt;] [--] [args...]
+   php [options] [-B &lt;begin_code&gt;] -F &lt;file&gt; [-E &lt;end_code&gt;] [--] [args...]
+   php [options] -S &lt;addr&gt;:&lt;port&gt; [-t docroot]
+   php [options] -- [args...]
+   php [options] -a
+
+  -a               Run as interactive shell
+  -c &lt;path&gt;|&lt;file&gt; Look for php.ini file in this directory
+  -n               No configuration (ini) files will be used
+  -d foo[=bar]     Define INI entry foo with value &#39;bar&#39;
+  -e               Generate extended information for debugger/profiler
+  -f &lt;file&gt;        Parse and execute &lt;file&gt;.
+  -h               This help
+  -i               PHP information
+  -l               Syntax check only (lint)
+  -m               Show compiled in modules
+  -r &lt;code&gt;        Run PHP &lt;code&gt; without using script tags &lt;?..?&gt;
+  -B &lt;begin_code&gt;  Run PHP &lt;begin_code&gt; before processing input lines
+  -R &lt;code&gt;        Run PHP &lt;code&gt; for every input line
+  -F &lt;file&gt;        Parse and execute &lt;file&gt; for every input line
+  -E &lt;end_code&gt;    Run PHP &lt;end_code&gt; after processing all input lines
+  -H               Hide any passed arguments from external tools.
+  -S &lt;addr&gt;:&lt;port&gt; Run with built-in web server.
+  -t &lt;docroot&gt;     Specify document root &lt;docroot&gt; for built-in web server.
+  -s               Output HTML syntax highlighted source.
+  -v               Version number
+  -w               Output source with stripped comments and whitespace.
+  -z &lt;file&gt;        Load Zend extension &lt;file&gt;.
+
+  args...          Arguments passed to script. Use -- args when first argument
+                   starts with - or script is read from stdin
+
+  --ini            Show configuration file names
+
+  --rf &lt;name&gt;      Show information about function &lt;name&gt;.
+  --rc &lt;name&gt;      Show information about class &lt;name&gt;.
+  --re &lt;name&gt;      Show information about extension &lt;name&gt;.
+  --rz &lt;name&gt;      Show information about Zend extension &lt;name&gt;.
+  --ri &lt;name&gt;      Show configuration for extension &lt;name&gt;.</pre>
+
+<p>Как видно, даже из этой краткой справки, <strong>PHP</strong> предоставляет большой набор команд для работы через <strong>CLI</strong>. Наибольший практический интерес предоставляет команда:</p>
+
+<pre style="background:#000;color:#fff;margin:0;padding:5px 10px;">
+&gt;php -S &lt;addr&gt;:&lt;port&gt;</pre>
+
+<p>которая позволяет запустить <u>встроенный</u> в <strong>PHP</strong>&nbsp; <strong>WEB</strong> сервер.</p>
+
+<p>Этот встроенный в <strong>PHP</strong> <strong>WEB</strong> сервер можно успешно использовать для <u>разработки</u> и <u>тестирования</u> <strong>PHP</strong> скриптов и сайтов на <strong>PHP</strong>. Работа с ним будет похожа на использование <strong>WEB</strong> сервера в <strong>Node.js</strong>. Можно запустить <u>несколько</u> экземпляров встроенного в <strong>PHP</strong> веб сервера для <u>разных</u> каталогов/сайтов,&nbsp;задав каждому свое <u>сочетание</u> <strong>хост:порт</strong>. Каждый, запущенный экземпляр, будет обслуживать <u>свой</u> каталог/сайт, для которого он был запущен (<em>см. пример ниже</em>). Несмотря на простоту и удобство встроенного в <strong>PHP</strong> <strong>WEB</strong> сервера его, все же, <u>не</u> рекомендуют использовать для Production эксплуатации сайтов, а использовать для этих целей специализированные <strong>WEB</strong> сервера, например, <strong>Apache</strong>. Также, если вы используете в каталогах сайта файлы конфигурации <strong>Apache</strong> <strong>.htaccess</strong>, то при работе со встроенным в <strong>PHP</strong> веб сервером нужно понимать, что конфигурационные директивы <strong>Apache</strong> из этих файлов и из файлов виртуальных хостов не будут работать.</p>
+
+<h4 id="php-webserver-run">Пример запуска встроенного PHP web сервера для сайта и каталога Z:\WebDevelopment\Projects\Site1 на localhost:80</h4>
+
+<p>Непосредственно запуск</p>
+
+<pre style="background:#000;color:#fff;margin:0;padding:5px 10px;">
+Z:\WebDevelopment\Projects\Site1&gt;php -S localhost:80
+PHP 7.1.0 Development Server started at Tue Dec 20 22:59:05 2016
+Listening on http://localhost:80
+Document root is Z:\WebDevelopment\Projects\Site1
+Press Ctrl-C to quit.</pre>
+
+<p>Сообщения в командной строке при обращении в браузере по адресу localhost</p>
+
+<pre style="background:#000;color:#fff;margin:0;padding:5px 10px;">
+[Tue Dec 20 22:59:17 2016] ::1:51206 [200]: /
+[Tue Dec 20 22:59:17 2016] ::1:51207 [200]: /favicon.ico
+[Tue Dec 20 22:59:17 2016] ::1:51208 [200]: /favicon.ico
+[Tue Dec 20 22:59:23 2016] ::1:51209 Invalid request (Unexpected EOF)</pre>
+
+<p>Как видите, внешне, запуск и работа встроенного в <strong>PHP</strong> <strong>WEB</strong> сервера очень похожа на работу встроенного в <strong>Node.js</strong> сервера. Выбираем каталог с сайтом и запускаем <strong>PHP</strong> веб сервер на нужном хосте (<em>не забываем в файле C:\WINDOWS\system32\drivers\etc\hosts прописать этот хост</em>) и порту. Наблюдаем сообщения в командной строке от <strong>PHP</strong> <strong>WEB</strong> сервера. Смотрите так же демонстрацию работы встроенного в <strong>PHP</strong> веб сервера в <u>скринкасте</u> к этой статье.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2 id="php7-apache24-settings"><span class="navy-font">ШАГ 5</span> <span class="font-small">настройка работы PHP с web сервером Apache2.4 на Windows</span></h2>
+
+<p>Для работы <strong>PHP</strong> с веб сервером необходимо будет выполнить уже дополнительные настройки в конфигурации самого <strong>WEB</strong> сервера, которые описаны ниже. В примерах этой статьи и скринкаста мною будет выполняться настройка <strong>PHP</strong> для работы с <strong>WEB</strong> сервером <strong>Apache 2.4.23 x64</strong> от <strong>Apache Haus</strong>, инсталляция которого описана скринкасте и статье: <a href="/ru/pages/page/install-apache-on-windows" title="перейти к статье и скринкасту Установка Apache на Windows">Установка Apache на Windows</a>.</p>
+
+<p>&nbsp;</p>
+
+<h3 id="php-apache-settings">Настройка Apache2.4 для работы с PHP</h3>
+
+<p>Как уже было описано выше, <strong>PHP</strong> может работать с <strong>web</strong> сервером <strong>Apache</strong> как через <strong>SAPI</strong> Apache модуль <strong>DLL</strong> (<em><strong>php7apache2_4.dll</strong></em>), так и через <strong>CGI</strong>/<strong>FastCGI</strong> бинарник <strong>PHP</strong> (<em><strong>php-cgi.exe</strong></em>). Но в любом случае необходимо будет сделать соответствующие настройки в <strong>httpd.conf</strong> файле веб сервера, и <u>перезапустить</u> сервер. Не забываете перезапускать <strong>Apache</strong> после правок файлов его конфигурации и конфигов <strong>PHP</strong>, если php вызывается как модуль <strong>Apache</strong>.</p>
+
+<p>В данном дистрибутиве <strong>PHP</strong> от <strong>php.net</strong> имеется файл <strong>php7apache2_4.dll</strong> из сборки <strong>Apache</strong> от <strong>Apache Lounge</strong> (<em>см. выше</em>). Этот файл, собственно, и является <strong>SAPI</strong> модулем <strong>WEB</strong> сервера <strong>Apache</strong> и обеспечивает взаимодействие между веб сервером и <strong>PHP</strong>. Данный модуль <strong>php7apache2_4.dll</strong> будет так же корректно работать и с дистрибутивом <strong>Apache 2.4.23 x64</strong> от <strong>Apache Haus</strong>, сборка которого используется в моих примерах. Нужно сказать, что этот <strong>SAPI</strong> модуль <strong>DLL</strong> работает достаточно стабильно на Windows и обеспечивает хорошую безопасность в сравнении с <strong>CGI</strong>.</p>
+
+<p>&nbsp;</p>
+
+<h4 id="php-apache-sapi">PHP как Apache модуль</h4>
+
+<p>Для того, что бы указать <strong>Apache</strong> на использование <strong>SAPI</strong> модуля <strong>PHP</strong> для вызова и обработки <u>всех</u> <strong>.php</strong> файлов, необходимо в главном конфигурационном файле <strong>WEB</strong> сервера <strong>Apache</strong> <span class="blue-font"><strong>httpd.conf</strong></span> дописать нижеследующие строки, которые можно разместить, например, поле блока директив подключения модулей <strong>Apache</strong>.</p>
+
+<pre style="background:#fafafa;border-left:4px solid #0655a4;margin:0;padding:5px 10px;">
+#<strong>httpd.conf </strong>блок кода
+# подключаем модуль SAPI
+<span class="blue-font"><strong>LoadModule</strong></span> <strong><span class="green-font">php7_module</span></strong> <span class="red-font">&quot;Z:/WebDevelopment/PHP/php7apache2_4.dll&quot;</span>
+# задаем MIME тип для файлов расширения .php
+<span class="blue-font"><strong>AddType</strong></span> <strong><span class="green-font">application/x-httpd-php</span></strong> <strong>.php</strong>
+# задаем каталог расположения конфигурационного файла PHP
+<span class="blue-font"><strong>PHPIniDir</strong></span> <span class="red-font">&quot;Z:/WebDevelopment/PHP&quot;</span></pre>
+
+<p><strong>где:</strong></p>
+
+<ul>
+	<li><strong>LoadModule</strong> директива загружает <strong>SAPI</strong> модуль <strong>Apache</strong>, через который и будет вызываться <strong>PHP</strong>;</li>
+	<li><a href="https://httpd.apache.org/docs/2.4/mod/mod_mime.html#addtype" target="_blank" title="К руководству Apache2.4"><strong>AddType<span class="fa fa-external-link fa-fw font-xsmall"></span></strong></a> директива ассоциирует указанный (<span class="green-font"><em>application/x-httpd-php</em></span>) <strong>MIME</strong> тип с файлами расширения <strong>.php</strong>;</li>
+	<li><strong>PHPIniDir</strong> определяет путь, где располагаются конфигурационные файлы <strong>php.ini</strong> или <strong>php-SAPI.ini</strong> при работе <strong>PHP</strong> как <u>модуля</u> Apache. Обычно это директория инсталяции <strong>PHP</strong>. <strong>Apache</strong> должен иметь доступ на чтение <strong>php.ini</strong> файла;</li>
+	<li><span class="fa fa-info-circle fa-fw orange-font"></span>пути в директивах должны иметь <u>прямые</u> слеши и <u>не</u> содержать пробелов. Желательно использовать только <strong>EN</strong> символы и цифры.</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h4 id="php-cgi-apache">PHP как FastCGI/CGI с Apache</h4>
+
+<p>Что бы настроить <strong>Apache</strong> для работы с <strong>PHP</strong> через <strong>FastCGI</strong>/<strong>CGI</strong> необходимо добавить в <strong>httpd.conf</strong> настройки, разрешающие выполнение <strong>CGI</strong> программ.</p>
+
+<p><strong>Apache</strong> предоставляет несколько вариантов настройки внешних <strong>CGI</strong> обработчиков:</p>
+
+<ul>
+	<li>директива <a href="https://httpd.apache.org/docs/2.4/mod/mod_actions.html#action" target="_blank" title="к описанию директивы Action на apache.org"><strong>Action</strong><span class="fa fa-external-link fa-fw font-xsmall"></span></a> модуля <strong>mod_actions</strong>, которая напрямую активирует исполнение скрипта как внешней <strong>CGI</strong> программы и позволяет назначить <strong>MIME</strong> типу <strong>CGI</strong> обработчик;</li>
+	<li>директивы <a href="http://httpd.apache.org/docs/current/howto/cgi.html" target="_blank" title="к описанию директив на apache.org"><strong>AddHandler</strong> или <strong>SetHandler</strong><span class="fa fa-external-link fa-fw font-xsmall"></span></a>, которые позволяют установить обработчик для файлов с расширениями, которые планируются обрабатываться как <strong>CGI</strong> программа. Затем, этому обработчику нужно будет директивой <strong>Action</strong> назначить <strong>CGI</strong> исполняемый файл бинарник <strong>php-cgi.exe</strong>. Так же, директива <strong>Options</strong> <strong>+ExecCGI</strong> позволяет разрешить выполнения <strong>CGI</strong> программ в указанном каталоге;</li>
+	<li><a href="http://httpd.apache.org/docs/current/mod/mod_alias.html#scriptalias" target="_blank" title="перейти к руководству Apache"><strong>ScriptAlias</strong><span class="fa fa-external-link fa-fw font-xsmall"></span></a> директива, которая позволяет связать <strong>URL</strong> с каталогом файловой системы и назначить исполнение запрошенного файла как <strong>CGI</strong> программы. Эта директива используется в сочетании с другими директивами;</li>
+	<li>сочетание нескольких директив&nbsp;и подходов позволяет в <strong>Apache</strong> выполнить и более сложную, комбинированную&nbsp;на разных уровнях конфигурации (<em>глобальном, сайта, каталога</em>) настройку для <strong>CGI</strong>, когда только часть сайтов (<em>виртуальных хостов</em>) или отдельных каталогов будут обрабатываться через <strong>CGI</strong>, а остальные скрипты будут вызваться через <strong>SAPI</strong> модуль <strong>PHP</strong>. Но любом случае, всегда нужно будет задать через директиву <strong>AddType</strong> <strong>MIME тип</strong> или через директивы <strong>AddHandler</strong>, <strong>SetHandler</strong> обработчик, ассоциированный с файлами расширений, которые будут обрабатываться через <strong>CGI</strong>/<strong>FastCGI</strong> и назначить этому <strong>MIME типу</strong>/<strong>обработчику</strong> директивой <strong>Action</strong> файл-бинарник <strong>php-cgi.exe</strong>.</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p>Чтобы настроить <strong>Apache</strong> для обработки <u>всех</u> <strong>PHP</strong> файлов через <strong>FastCGI</strong>/<strong>CGI</strong> интерфейсы необходимо в <strong>httpd.conf</strong> конфиге <strong>Apache</strong> добавить нижеследующие строки:</p>
+
+<pre style="background:#fafafa;border-left:4px solid #0655a4;margin:0;padding:5px 10px;">
+<strong>#httpd.conf</strong> блок кода
+# задаем MIME тип для файлов расширения .php                                    
+<span class="blue-font"><strong>AddType</strong></span> <strong><span class="green-font">application/x-httpd-php</span></strong> <strong>.php</strong>
+# задаем <strong>CGI</strong> обработчик для MIME типа ассоциированного с <strong>.php</strong> файлами
+<span class="blue-font"><strong>Action</strong></span> <span class="green-font"><strong>application/x-httpd-php</strong></span> <span class="red-font">&quot;Z:/WebDevelopment/PHP/php-cgi.exe&quot;</span>
+# Указываем директорию <strong>php.ini</strong> для CGI
+<strong><span class="blue-font">SetEnv</span></strong> <span class="green-font"><strong>PHPRC</strong></span> <span class="red-font">&quot;Z:/WebDevelopment/PHP&quot;</span></pre>
+
+<p><strong>где:</strong></p>
+
+<ul>
+	<li><strong>AddType</strong> директива связывает указанный <strong>MIME</strong> тип с файлами расширения <strong>.php</strong>;</li>
+	<li><strong>Action</strong>&nbsp;директива задет внешний <strong>CGI</strong> обработчик для <strong>MIME</strong> типа ассоциированного с <strong>.php</strong> файлами;</li>
+	<li><strong>SetEnv</strong> директива&nbsp;задает переменную окружения <strong>PHPRC</strong>, в значении которой указывается путь к&nbsp;каталогу инсталяции <strong>PHP</strong>. В примере это <strong>&quot;Z:/WebDevelopment/PHP&quot;</strong></li>
+</ul>
+
+<p>После этой настройки <strong>Apache</strong> будет <u>все</u> <strong>PHP</strong> файлы обрабатывать как внешние <strong>CGI</strong> программы через <strong>FastCGI</strong>/<strong>CGI</strong> бинарник <strong>php-cgi.exe</strong>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2 id="virtualhost-apache24"><span class="navy-font">ШАГ 6</span> <span class="font-small">настройка виртуального хоста Apache</span></h2>
+
+<p>После настройки работы <strong>PHP</strong> с <strong>Apache</strong> как модуля <strong>SAPI</strong> целесообразно выполнить настройку виртуального хоста для каталога сайта, который будет обслуживаться <strong>WEB</strong> сервером и <strong>PHP</strong>. Настройка виртуального хоста для сайта уже относиться исключительно к настройке <strong>WEB</strong> сервера <strong>Apache</strong> и приводится здесь для целостности понимания организации собственного разработческого <strong>WinAMP</strong> веб сервера на <strong>Windows</strong> для разработки и тестирования скриптов и сайтов, работающих на <strong>PHP</strong> в связке и <strong>Apache</strong>.</p>
+
+<p>Об установки других компонентов <strong>Win+AMP</strong> сборки написано в статьях:</p>
+
+<ul>
+	<li><a href="/ru/pages/page/install-apache-on-windows" title="перейти к статье Установка Apache на Windows">&quot;Установка Apache на Windows&quot;</a></li>
+	<li><a href="/ru/pages/page/installing-mysql-on-windows-from-zip-archive" title="перейти к статье Portable MySQL 5.7 в Windows">&quot;Portable MySQL 5.7 в Windows&quot;</a></li>
+	<li><a href="/ru/pages/page/install-gulp" title="перейти к статье Установка Gulp в WEB проект сайта">&quot;Установка Gulp в WEB проект сайта&quot;</a></li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3 id="apache24-virtualhost">Создание и настройка виртуального хоста Apache2.4</h3>
+
+<p>Все примеры статьи и скринкаста по настройке виртуального хоста будут приведены для сборки <strong>Apache 2.4.23 x64</strong> от <strong>Apache Haus</strong>, инсталляция которого описана в статье: <a href="/ru/pages/page/install-apache-on-windows" title="перейти к статье Установка Apache на Windows">Установка Apache на Windows</a>,</p>
+
+<p><strong>где:</strong></p>
+
+<ul>
+	<li><strong>Z:\WebDevelopment\Apache24</strong> это <strong>ServerRoot</strong> - домашний каталог <strong>Apache2.4</strong>;</li>
+	<li><strong>Z:\WebDevelopment\Apache24\conf\httpd.conf</strong> - главный конфиг данной инсталяции <strong>Apache2.4</strong>;</li>
+	<li><strong>Z:\WebDevelopment\Apache24\conf\extra\httpd-vhosts.conf</strong> - конфиг для настройки виртуальных хостов в <strong>Apache2.4</strong> на <strong>Windows</strong>.</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h4 id="hosts-file">Файл hosts</h4>
+
+<p>Файл <strong>hosts</strong> - это обычный текстовый локальный файл без расширения, в котором настраивается соответствие доменных имен сетевым <strong>IP</strong> адресам узлов. Таким образом, файл <strong>hosts</strong> - это простой вариант локального <strong>DNS</strong> и запрос к этому файлу выполняется в <u>первую</u> очередь, а запрос к внешним <strong>DNS</strong> серверам выполняется уже во <u>вторую</u> очередь.</p>
+
+<p>В примере статьи и скринкаста виртуальный хост будет настраиваться для сайта из каталога &quot;<strong>Z:\WebDevelopment\Projects\Site1</strong>&quot; и тестового домена <strong>text.ru</strong> для этого сайта. Для того, чтобы браузер на вашем компьютере открывал этот локальный сайт по доменному имени <strong>text.ru</strong> необходимо в файл <strong>C:\WINDOWS\system32\drivers\etc\hosts</strong> добавить соответствующий этому домену <strong>IP</strong> адрес как <strong>127.0.0.1</strong> - локальных хост.</p>
+
+<pre style="background:#fafafa;border-left:4px solid #0655a4;margin:0;padding:5px 10px;">
+# блок кода из файла <strong>C:\WINDOWS\system32\drivers\etc\hosts</strong>
+
+# localhost name resolution is handled within DNS itself.
+127.0.0.1       localhost
+::1             localhost
+#
+# <span class="sm-xorange-font">Укажем IP для <strong>test.ru</strong> для настраиваемого виртуального хоста</span>
+<strong>127.0.0.1</strong>       <strong>test.ru</strong> <strong>www.test.ru</strong></pre>
+
+<p>&nbsp;</p>
+
+<h4 id="apache-virtualhost-conf">Файл httpd-vhosts.conf</h4>
+
+<p>В <strong>Apache2.4</strong> настройка конфигурации виртуальных хостов вынесена в отдельный файл конфигурации: <strong>conf\extra\httpd-vhosts.conf</strong> относительно домашней директории веб сервера. Это сделано для удобства, чтобы не писать все в главном конфиге <strong>Apache2.4</strong>. Поэтому принято логически связанные блоки конфигурации веб сервера выносить в отдельные специализированные файлы конфигурации (<a href="/ru/pages/page/apache-ubuntu-configuration-overview" title="перейти к статье Обзор конфигурации Apache в Ubuntu"><em>смотри обзор конфигурации Apache в Ubuntu</em></a>), которые подключаются в главном конфиге <strong>Apache</strong> при помощи директивы <strong>Include</strong>. Следуя этой логике, конфигурация виртуальных хостов вынесена в отдельный файл с именем <strong>conf\extra\httpd-vhosts.conf</strong>, а в главном конфиге <strong>Apache</strong> в секции с комментарием &quot;<strong>Virtual hosts</strong>&quot; выполнено подключение этого конфига:</p>
+
+<pre style="background:#fafafa;border-left:4px solid #0655a4;margin:0;padding:5px 10px;">
+# блок кода из файла httpd.conf
+# <strong>Virtual hosts</strong>
+<span class="blue-font"><strong>Include</strong></span> <span class="green-font"><strong>conf/extra/httpd-vhosts.conf</strong></span></pre>
+
+<p>Найдите в главном конфиге <strong>Apache</strong> <strong>conf\httpd.conf</strong> приведенный выше блок кода и убедитесь, что директива <strong>Include</strong> для <strong>httpd-vhosts.conf</strong> файла <u>не</u> закомментирована. По умолчанию она закомментирована, поэтому раскомментируйте ее для того, чтобы при старте <strong>Apache</strong> файл с конфигурацией виртуальных хостов был прочитан и добавлен в конфигурацию веб сервера.</p>
+
+<p>&nbsp;</p>
+
+<h4 id="virtualhost">&lt;VirtualHost&gt; директива Apache</h4>
+
+<p>Для создания и управления виртуальными хотами в <strong>Apache</strong> используется директива <strong>&lt;VirtualHost&gt;...&lt;/VirtualHost&gt;</strong>, которая создает контейнер для директив, применимых только к указанному в <strong>VirtualHost</strong> <strong>hostname</strong> или <strong>IP</strong> адресу. Это позволяет на одном компьютере для одного и того же <strong>IP</strong>/<strong>hostname</strong> назначить разные сайты, разделив их по значению&nbsp;директивы <strong>ServerName</strong>, указав в ней разные доменные имена сайтов для разных виртуальных хостов.</p>
+
+<h4 id="apache-virtualhost">Общий вид директивы <a href="https://httpd.apache.org/docs/2.4/mod/core.html#virtualhost" target="_blank" title="Перейти к документации на apache.org">&lt;VirtualHost&gt; <span class="fa fa-external-link fa-fw font-xsmall"></span></a>:</h4>
+
+<pre style="background:#fafafa;border-left:4px solid #0655a4;margin:0;padding:5px 10px;">
+Синтаксис:    <strong>&lt;</strong><span class="blue-font">VirtualHost</span> <strong><span class="green-font">addr</span></strong><span class="navy-font">[</span><span class="sm-xgreen-font">:port</span><span class="navy-font">]</span> <span class="navy-font">[</span><strong><span class="green-font">addr</span></strong><span class="navy-font">[</span><span class="sm-xgreen-font">:port</span><span class="navy-font">]]</span> ...<strong>&gt;</strong> ... <strong>&lt;/</strong><span class="blue-font">VirtualHost</span><strong>&gt;</strong>
+Контекст:    server config
+Статус:    Core
+Модуль:    core</pre>
+
+<p>В открывающем теге директивы <code style="margin:0;padding:5px 10px;"><strong>&lt;</strong><span class="blue-font">VirtualHost</span> <strong><span class="green-font">addr</span></strong><span class="navy-font">[</span><span class="sm-xgreen-font">:port</span><span class="navy-font">]</span> <span class="navy-font">[</span><strong><span class="green-font">addr</span></strong><span class="navy-font">[</span><span class="sm-xgreen-font">:port</span><span class="navy-font">]]</span> ...</code><strong><code style="margin:0;padding:5px 10px;">&gt;</code> </strong><span class="blue-font"></span>можно указать:</p>
+
+<ul>
+	<li><strong>IP</strong> адрес, с которым будет ассоциирован данный виртуальный хост. Это <strong>IP</strong> одного из сетевых интерфейсов данного <u>сервера</u>/компьютера. Например, <code style="margin:0;padding:5px 10px;">&lt;VirtualHost <strong>127.0.0.1</strong>&gt;</code> будет применяться к локальному сетевому интерфейсу (<em>сетевому адаптеру</em>) данного сервера;</li>
+	<li><strong>FQDN</strong> (<a href="https://ru.wikipedia.org/wiki/FQDN" target="_blank" title="К описанию на wikipedia.org"><em>Fully Qualified Domain Name<span class="fa fa-external-link fa-fw font-xsmall"></span></em></a>) - полное&nbsp;доменное имя одного из сетевых интерфейсов данного <u>сервера</u>/компьютера вместо его <strong>IP</strong> адреса, с которым будет ассоциирован данный виртуальный хост. Например, <code style="margin:0;padding:5px 10px;">&lt;VirtualHost <strong>localhost</strong>&gt;</code>. Здесь нужно понимать, что указанный домен должен быть связан с <strong>IP</strong> адресом одного из сетевых интерфейсов данного <u>сервера</u>/компьютера. Однако, предпочтительно все же указывать <u>именно</u> <strong>IP</strong> адрес, а не доменное имя, т.к. при указании доменного имени <strong>Apache</strong> должен будет все равно определить его <strong>IP</strong>, а это требует уверенности, что все настройки <strong>DNS</strong> сделаны правильно. Также расходуется время на дополнительную операцию по получению <strong>IP</strong> адреса для доменного имени. Поэтому, при настройках, обычно <u>предпочитают</u> указывать именно <strong>IP</strong> адрес;</li>
+	<li>можно, опционально, указать <strong>порт</strong> для адреса, например <code style="margin:0;padding:5px 10px;">&lt;VirtualHost 127.0.0.1:<strong>80</strong>&gt;</code>;</li>
+	<li>можно указать несколько <code style="margin:0;padding:5px 10px;"><strong><span class="green-font">addr</span></strong><span class="navy-font">[</span><span class="sm-xgreen-font">:port</span><span class="navy-font">]</span> <span class="navy-font">[</span><strong><span class="green-font">addr</span></strong><span class="navy-font">[</span><span class="sm-xgreen-font">:port</span><span class="navy-font">]]</span></code> значений, например, <code style="margin:0;padding:5px 10px;">&lt;VirtualHost <strong>127.0.0.1:80</strong> <strong>192.168.0.4</strong>&gt;</code>;</li>
+	<li>можно использовать для задания <strong>IP</strong> <u>адреса</u> символ подстановки <strong><code style="margin:0;padding:5px 10px;">*</code></strong> <u>звездочку</u>, которая будет означать <strong>любое</strong> значение.&nbsp;Звездочкой можно заменять <u>только</u> <strong>IP</strong> <u>адрес</u>. Например, <code style="margin:0;padding:5px 10px;">&lt;VirtualHost <strong>*</strong>:80&gt;</code> будет применен для всех <strong>IP</strong> интерфейсов данного сервера;</li>
+	<li>вместо <strong><code style="margin:0;padding:5px 10px;">*</code></strong>&nbsp; звездочки можно использовать строку <strong>_default_</strong>, которая, в данном случае, является <u>алиасом</u> звездочки. Например, <code style="margin:0;padding:5px 10px;">&lt;VirtualHost <strong>_default_</strong>:80&gt;</code> будет <u>равносильно</u> <code style="margin:0;padding:5px 10px;">&lt;VirtualHost *:80&gt;</code>.</li>
+</ul>
+
+<p>После того, как выполнено подключения конфига виртуальных хостов в главном конфиге <strong>Apache</strong>, необходимо открыть файл <strong>conf\extra\httpd-vhosts.conf</strong> на редактирование, перейти в его конец и добавить новый блок кода для нужного виртуального хоста (<em>в примере для <strong>test.ru</strong></em>). Для подсказки можно пользоваться приведенными в конце этого файла закомментированными заготовками кода для создания виртуальных хостов.</p>
+
+<p>&nbsp;</p>
+
+<h4 id="apache-default-virtualhost">VirtualHost _default_</h4>
+
+<p><strong>Обязательно</strong> <strong>первым</strong>, в списке виртуальных хостов, должен быть указан <strong>виртуальный хост по умолчанию</strong> как: <code style="margin:0;padding:5px 10px;"><strong>&lt;VirtualHost _default_:80&gt;</strong></code> или <code style="margin:0;padding:5px 10px;"><strong>&lt;VirtualHost *:80&gt;</strong></code>. Это связано с тем, что если <strong>Apache</strong> <u>не</u> найдет виртуального хоста, сопоставимого по параметру <strong>ServerName</strong> с доменом <strong>URL</strong> запроса, то в этом случае <strong>Apache</strong> отдаст <strong>первый</strong> из списка виртуальный хост. Поэтому позаботьтесь, чтобы <u>первый</u>, в списке виртуальных хостов, хост был правильно настроен и отдавал нужную вам страницу. Именно поэтому первым всегда записывают, так называемый, дефолтовый хост. Если настройка виртуальных хостов вынесена в <u>отдельные</u> файлы, где для каждого виртуального хоста имеется свой конфигурационный файл, то <strong>Apache</strong> будет читать эти файлы согласно порядку их подключения в своем главном конфиге. И если подключение выполнено через подключение <u>директории</u> с конфигами виртуальных хостов, то <strong>Apache</strong> будет читать эти конфиги виртуальных хостов согласно <u>алфавитному</u> порядку файлов в директории. Поэтому, всегда нужно обращать внимание, в какой последовательности Apache прочитает конфигурацию виртуальных хостов, т.к. если он не найдет для запроса соответствующего виртуального хоста, то он отдаст <u>первый прочитанный</u> виртуальный хост. Поэтому, если подключают конфиги виртуальных хостов сразу целой директорией, то в этой директории создают файл с именем <strong>000-default-vhosts.conf</strong>, в котором задают виртуальный хост <u>по умолчанию</u>. Имя файла специально начинается с <u>000</u>, что бы этот файл был первым в алфавитном порядке, и соответственно был <strong>первым</strong> прочитан <strong>Apache</strong>.</p>
+
+<p>&nbsp;</p>
+
+<p>Блок кода из файла <strong>httpd-vhosts.conf</strong>, где продемонстрирована простая, минимальная, начальная настройка виртуальных хостов для сайта <strong>test.ru</strong> из примера статьи и скринкаста:</p>
+
+<pre style="background:#fafafa;border-left:4px solid #0655a4;margin:0;padding:5px 10px;">
+# Блок кода из <strong>httpd-vhosts.conf</strong> примера статьи и скринкаста
+# ПЕРВЫМ из всех виртуальных хостов должен быть записан default хост,
+# который будет отдаваться, если Apache не нашел VirtualHost, сопоставимый
+# с доменным именем в URL запроса, т.к. в этом случае Apache покажет именно
+# ПЕРВЫЙ по рядку записанный здесь виртуальный хост. Поэтому default хост
+# нужно указать ПЕРВЫМ в списке виртуальных хостов, так как порядок в этом
+# случае имеет значение.
+
+&lt;<span class="blue-font"><strong>VirtualHost</strong></span> 127.0.0.1:80&gt;
+    # default сайт/хост задан как стартовая страница данной сборки Apache
+    DocumentRoot &quot;${SRVROOT}/htdocs&quot;
+&lt;/<span class="blue-font"><strong>VirtualHost</strong></span>&gt;
+
+#задал &lt;VirtualHost 127.0.0.1:80&gt; т.к. в примере Apache слушает только 127.0.0.1 IP,
+#но можно и как &lt;VirtualHost *:80&gt; или &lt;VirtualHost _default_:80&gt; сразу для всех IP.
+#Примечание: Знак звездочка * значит любой IP,
+# <strong>_default_</strong> это алиас <strong>*</strong>, поэтому выражения:
+#&lt;VirtualHost _default_:80&gt; будет равносильно &lt;VirtualHost *:80&gt;
+
+
+#Виртуальный хост для <strong>test.ru</strong> из каталога Z:\WebDevelopment\Projects\Site1
+&lt;<span class="blue-font"><strong>VirtualHost</strong></span> *:80&gt;
+    <strong>ServerAdmin</strong> webmaster@test.ru
+    <strong>DocumentRoot</strong> &quot;Z:/WebDevelopment/Projects/Site1&quot;
+    <strong>ServerName</strong> <strong>test.ru</strong>
+# Можно задать отдельные log файлы только для этого хоста
+# Если их не указать, то логи будут писаться в общие файлы
+#   ErrorLog &quot;logs/test.ru-error.log&quot;
+#   CustomLog &quot;logs/test.ru-access.log&quot; common
+&lt;/<span class="blue-font"><strong>VirtualHos</strong>t</span>&gt;</pre>
+
+<p>&nbsp;</p>
+
+<h4 id="apache-commands">Команды проверки конфигурации виртуальных хостов Apache</h4>
+
+<p>Для проверки конфигурации виртуальных хостов <strong>Apache</strong> предоставляет специальные команды, которые выводят в терминале информацию о том, как <strong>Apache</strong> обработал файл конфигурации виртуальных хостов.</p>
+
+<h5>Для Linux</h5>
+
+<pre style="background:#fafafa;border-left:4px solid #0655a4;margin:0;padding:5px 10px;">
+apachectl -S</pre>
+
+<h5>Для Windows</h5>
+
+<pre style="background:#fafafa;border-left:4px solid #0655a4;margin:0;padding:5px 10px;">
+httpd.exe -S</pre>
+
+<p>&nbsp;</p>
+
+<p>Теперь, после настроек виртуальных хостов (<em>дефолтового и test.ru</em>) и добавления домена <strong>test.ru</strong> в <strong>hosts</strong> файл можно запустить <strong>Apache</strong> и обратиться в браузере к сайту примера из каталога <strong>Z:\WebDevelopment\Projects\Site1</strong> по <strong>URL</strong> <strong>http://test.ru</strong> или <strong>http://test.ru/index.php</strong>.</p>
+
+<p>&nbsp;</p>
+
+<h4>Использование несколько версий PHP</h4>
+
+<p>Если вам требуется использовать <strong>несколько версий PHP</strong>, обслуживаемых <u>одним</u> web сервером <strong>Apache</strong>, то вам необходимо выполнить установку в систему как описано выше нескольких, нужных вам версий PHP, например <strong>PHP 7.2</strong> и <strong>PHP 5.6</strong>, использовав для каждой из версий свой каталог. После этого вы можете в конфигурационном файле вашего Apache указать подключение нужной версии PHP. Тогда для смены версии PHP вам нужно будет остановить web сервер Apache, открыть его конфиг и сделать правки подключения PHP указав путь к нужной вам в данный момент версии PHP. Можно для этого заранее сделать в конфиге Apache заготовленные блоки подключения для каждой версии PHP, но держать их закомментированными, а активной только один блок, используемый в данный момент. Это будет такой простой ручной особ смены версий PHP.</p>
+
+<p>Если вы хотите эти операции по смене версии <strong>PHP</strong> <u>автоматизировать</u>, то можно использовать такой вариант, когда инсталлировать ваш Apache как системную службу Windows, но сделать это для каждой версии PHP. Для этого нужно будет создать несколько полноценных конфигов Apache, в каждом подключив нужную версию PHP. После этого инсталлируем Apache с разными конфигами как системные службы:</p>
+
+<pre style="background:#fafafa;border-left:4px solid #0655a4;margin:0;padding:5px 10px;">
+Z:\WebDevelopment\Apache24\bin\httpd.exe -k install -n &quot;Apache PHP5.6&quot; -f &quot;Z:\WebDevelopment\Apache24\conf\httpd5.conf&quot;
+Z:\WebDevelopment\Apache24\bin\httpd.exe -k install -n &quot;Apache PHP7.2&quot; -f &quot;Z:\WebDevelopment\Apache24\conf\httpd7.conf&quot;</pre>
+
+<p>После этого нужно созданные службы настроить так, что бы автостарт был только у <u>одной</u>, или вообще, что бы все службы имели только ручной запуск, что бы не получить ситуацию, когда система будет пытаться запустить одновременно несколько служб Apache с разными конфигами и получится конфликт. В данный момент времени должна быть запущена только <u>одна</u> служба Apache. Детали по настройке Apache как службы Windows смотрите в статье: <a href="/ru/pages/page/install-apache-on-windows" title="Установка Apache на Windows">Установка Apache на Windows</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2 id="ftp-email-on-windows"><span class="navy-font">ШАГ 7</span> <span class="font-small">FTP EMAIL</span></h2>
+
+<p>На этом установку <strong>PHP</strong> на <strong>Windows</strong> и базовую настройку <strong>Apache</strong> для запуска <strong>PHP</strong> скриптов можно считать законченной. Все описанное ниже является <u>не</u> обязательным и приведено в качестве дополнения. Можно добавить <strong>MySQL</strong>, <strong>GULP</strong>, <strong>FTP</strong> и <strong>EMAIL</strong>, что бы получить полноценный разработческий <strong>WAMP</strong> сервер на <strong>Windows</strong>. Ссылки на установку <strong>MySQL</strong> и <strong>GULP</strong> были приведены выше.</p>
+
+<p>&nbsp;</p>
+
+<h3 id="email-on-windows">EMAIL</h3>
+
+<p>В качестве тестового <strong>EMAIL</strong> сервера для перехвата <strong>email</strong> сообщений, отправленных из <strong>PHP</strong>, можно порекомендовать старенький инструмент от набора Denwer, который представляет собой заглушку-эмулятор <strong>sendmail</strong> сервера. Этот инструмент слушает <strong>25</strong> порт и перехватывает <strong>email</strong> сообщения отправленные из <strong>PHP</strong>, и складывает их в локальный каталог, который настроен в конфиге скрипта. Это позволит вам локально выполнять тестирование отправки почты из <strong>PHP</strong>.</p>
+
+<p>Структура каталогов инструмента из набора Denwer для перехвата email из PHP:</p>
+
+<pre style="background:#fafafa;border-left:4px solid #0655a4;margin:0;padding:5px 10px;">
+denwer\tools\sendmail
+ |--common.pm
+ |--README.txt
+ |--sendmail.exe
+ |--sendmail.pl
+ |--sendmail_daemon.ico
+ |--sendmail_daemon.pl
+ |--sendmail_daemon_start.exe
+ |--sendmail_daemon_stop.exe
+ |--sendmail_stub.pl
+ |--sendmail_stub_onefile.pl</pre>
+
+<p>&nbsp;</p>
+
+<h3 id="ftp-on-windows">FTP сервер для Windows</h3>
+
+<p>Если необходимо работать в PHP с функциями FTP, то тогда нужно установить дополнительно FTP сервер. Для разработки и тестирования в качестве FTP сервера для Windows можно порекомендовать: <a href="http://www.pablosoftwaresolutions.com/html/baby_ftp_server.html" target="_blank" title="к сайту Baby FTP Server">&quot;Baby FTP Server&quot;<span class="fa fa-external-link fa-fw font-xsmall"></span></a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h2 id="php-additional-tools">Дополнения и инструменты PHP</h2>
+
+<h3 id="php-deplister-exe">deplister.exe</h3>
+
+<p>В составе данной сборки <strong>PHP7</strong> присутствует утилита командной строки с именем файла <strong>deplister.exe</strong>. Эта утилита предназначена для определения зависимостей модулей <strong>PHP</strong>. Если вызвать эту утилиту в командной строке и передать ей в виде аргумента файл модуля <strong>PHP</strong>, то будет выдан список файлов-зависимостей для этого модуля и результат проверки их на соответствие этому модулю. Таки образом, данная утилита может быть полезна для поиска проблем в работе подключаемых модулей <strong>PHP</strong>. Обычно, для модулей поставляемых в составе одной сборки <strong>PHP</strong> проблем не возникает, но они могут быть при добавлении отдельно скачанных модулей <strong>PHP</strong>. Здесь эта утилита может и пригодиться.</p>
+
+<h4 id="php-deplister">Пример работы утилиты deplister.exe для модуля PHP:</h4>
+
+<pre style="background:#fafafa;border-left:4px solid #0655a4;margin:0;padding:5px 10px;">
+Z:\WebDevelopment\PHP&gt;<span class="navy-font"><strong>deplister.exe</strong></span> <span class="green-font"><strong>ext\php_ftp.dll</strong></span>
+php7ts.dll,OK
+SSLEAY32.dll,OK
+LIBEAY32.dll,OK
+WS2_32.dll,OK
+VCRUNTIME140.dll,OK
+api-ms-win-crt-string-l1-1-0.dll,OK
+api-ms-win-crt-time-l1-1-0.dll,OK
+api-ms-win-crt-convert-l1-1-0.dll,OK
+api-ms-win-crt-runtime-l1-1-0.dll,OK
+api-ms-win-crt-stdio-l1-1-0.dll,OK
+KERNEL32.dll,OK</pre>
+
+<p>&nbsp;</p>
+
+<h3 id="php-phpdbg">Отладчик phpdbg</h3>
+
+<p>В состав дистрибутива <strong>PHP</strong> включен файл <strong>phpdbg.exe</strong> и <strong>php7phpdbg.dll</strong>, который является легким, мощным, простым в использовании интерактивным отладчиком для <strong>PHP</strong> скриптов. Будучи реализованным и как модуль <strong>SAPI</strong> (<strong>php7phpdbg.dll</strong>), <strong>phpdbg</strong> может осуществлять полный контроль над окружением, не оказывая влияния на функциональность и производительность <strong>PHP</strong> кода.</p>
+
+<p>Отладчик <a href="http://phpdbg.com/docs" target="_blank" title="к документации по отладчику phpdbg"><strong>phpdbg<span class="fa fa-external-link fa-fw font-xsmall"></span></strong></a> предоставляет следующие возможности для отладки <strong>PHP</strong> скриптов:</p>
+
+<ul>
+	<li>Пошаговая отладка;</li>
+	<li>Гибкое размещение точек останова в методах класса, в функциях, в строках файла, Address, Opcode;</li>
+	<li>Легкий доступ к PHP со встроенным Eval ();</li>
+	<li>Легкий доступ к выполняемому в данный момент коду;</li>
+	<li>Userland API;</li>
+	<li>SAPI Agnostic - Легко Интегрированный;</li>
+	<li>Поддержка файлов PHP конфигурации;</li>
+	<li>JIT Super Globals - установить свой собственный;</li>
+	<li>Optional readline Support - удобно в терминале;</li>
+	<li>Remote Debugging Support - GUI Java;</li>
+	<li>Простое управление отладчиком</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3 id="pecl-extensions">PECL extensions</h3>
+
+<p><strong>PHP</strong> дистрибутив содержит основные необходимые расширения <strong>PHP</strong>. Однако, может возникнуть потребность установить дополнительные расширения и модули, отсутствующие в данном дистрибутиве. Для расширений <strong>PHP</strong> существует <a href="http://pecl.php.net" target="_blank" title="перейти к PECL репозиторию"><strong>PECL</strong> репозиторий<span class="fa fa-external-link fa-fw font-xsmall"></span></a>, доступный через <strong>PEAR</strong> пакетный менеджер и напрямую, в браузере. Поэтому, дополнительные модули и библиотеки <strong>PHP</strong> под <strong>Windows</strong> можно скачать на <strong>php.net</strong> и<strong> pecl.php.net</strong>, где можно найти скомпилированные бинарники нужной библиотеки как <strong>.dll</strong> файла. Скачанную библиотеку или модуль нужно поместить в директорию для расширений <strong>PHP</strong> на <strong>Windows</strong> (<em>PHP/ext</em>). Затем, добавленное расширение нужно подключить в файле <strong>php.ini</strong> как <strong>extension=php_extname.dll</strong> и перезапустить <strong>WEB</strong> сервер для вступления изменений с силу.</p>
+
+<p>&nbsp;</p>
+
+<div itemprop="video" itemscope="" itemtype="http://schema.org/VideoObject">
+<h2 id="screencast-install-php-on-windows" itemprop="name">Скринкаст: Установка PHP7 на Windows</h2>
+
+<p itemprop="description">В скринкасте продемонстрирована инсталляция и настройка PHP 7.1.0 php-7.1.0-Win32-VC14-x64 на Windows7, интеграция с Apache. Показы все основные шаги - выбор сборки дистрибутива PHP, размещение PHP в Windows7, обзор состава дистрибутива PHP, настройка PHP, работа с PHP из командной строки, использование встроенного в PHP WEB сервера, настройка работы PHP как модуля Apache, настройка виртуального хоста в Apache. Дополнительно даны примеры и ссылки по самостоятельной организации WinAMP сборки. В конце добавлена информация о новшествах PHP7 и перспективах развития языка PHP.</p>
+
+<div itemprop="thumbnail" itemscope="" itemtype="http://schema.org/ImageObject" style="display: none;"><img class="pure-img" itemprop="contentUrl" src="https://yadi.sk/i/8FkNQa6y35bDHd" /> <meta content="1280" itemprop="width"> <meta content="720" itemprop="height"></div>
+<img class="pure-img" itemprop="thumbnailUrl" src="https://yadi.sk/i/8FkNQa6y35bDHd" style="display: none;" /> <meta content="PT26M48S" itemprop="duration"> <meta content="2016-12-28" itemprop="uploadDate"> <meta content="true" itemprop="isFamilyFriendly"> <meta content="Andrey Boldyrev" itemprop="publisher"> <a class="ydisk-onready" data-height="720" data-width="1280" href="https://yadi.sk/i/qcOQ_E4Z35bDxG" id="install-php-on-windows-video-1" target="_blank" title="Смотреть скринкаст Установка PHP7 на Windows">Смотреть скринкаст Установка PHP7 на Windows</a>
+
+<h3 id="content-screencast" title="Запустите воспроизведение видео для работы интерактивного содержания">Содержание скринкаста:</h3>
+
+<div>
+<ul style="font-family:monospace;">
+	<li><a class="install-php-on-windows-video-1" data-start-time="6" href="javascript:;">О теме скринкаста........................................00:06</a></li>
+	<li><a class="install-php-on-windows-video-1" data-start-time="36" href="javascript:;">Скачивание дистрибутива PHP7.1.0 от 01-12-2016...........00:36</a></li>
+	<li><a class="install-php-on-windows-video-1" data-start-time="119" href="javascript:;">Размещение дистрибутива PHP в Windows7...................01:59</a></li>
+	<li><a class="install-php-on-windows-video-1" data-start-time="143" href="javascript:;">Состав дистрибутива PHP..................................02:23</a></li>
+	<li><a class="install-php-on-windows-video-1" data-start-time="211" href="javascript:;">Создание php.ini файла конфигурации PHP..................03:31</a></li>
+	<li><a class="install-php-on-windows-video-1" data-start-time="244" href="javascript:;">Добавление PHP в системную переменную PAHT...............04:04</a></li>
+	<li><a class="install-php-on-windows-video-1" data-start-time="356" href="javascript:;">Работа с PHP из командной строки.........................05:56</a></li>
+	<li><a class="install-php-on-windows-video-1" data-start-time="474" href="javascript:;">Встроенный в PHP WEB сервер, phpinfo.....................07:54</a></li>
+	<li><a class="install-php-on-windows-video-1" data-start-time="696" href="javascript:;">Настройка Apache для работы с PHP как SAPI модуля........11:36</a></li>
+	<li><a class="install-php-on-windows-video-1" data-start-time="1073" href="javascript:;">Настройка виртуального хоста Apache для сайта............17:53</a></li>
+	<li><a class="install-php-on-windows-video-1" data-start-time="1435" href="javascript:;">Предложение по перехвату email из PHP, FTP на Windows....23:55</a></li>
+	<li><a class="install-php-on-windows-video-1" data-start-time="1495" href="javascript:;">Развитие PHP7, новое, скорость выполнения, будущее PHP...24:55</a></li>
+</ul>
+</div>
+
+<p itemprop="author" itemscope="" itemtype="http://schema.org/Person">Автор: <a href="/ru/pages/page/person-andrew" itemprop="url" target="_blank" title="переход на страницу автора"><span itemprop="name">Андрей Болдырев</span>&nbsp;<span class="fa fa-external-link font-xsmall"></span></a><meta content="/content/uploads/userfiles/images/persons/andrew/andrew-andew-ru.jpg" itemprop="image"></p>
+
+<p><a class="sm-fancybox" href="https://youtu.be/5aMo7I71nNg" target="_blank" title="Скринкаст: УСТАНОВКА PHP7 на Windows">Смотреть на YouTube скринкаст: Установка PHP7 на Windows&nbsp;<span class="fa fa-external-link font-xsmall"></span></a></p>
+
+<p><a class="ydisk-onready" download="download" href="https://yadi.sk/i/qcOQ_E4Z35bDxG" itemprop="url" target="_blank">Скачать скринкаст: Установка PHP7 на Windows&nbsp;<span class="fa fa-external-link font-xsmall"></span></a></p>
+</div>
+
+<p>&nbsp;</p></div><div class="ya-share2" data-services="collections,vkontakte,facebook,gplus,skype,telegram" data-lang="ru" data-description="Установка PHP7 на Windows В статье описывается ручная portable установка языка PHP 7.1, 7.2 и 7.^ на Windows из zip архива. П�... Andew.ru"></div></section></div></div></div><div class="pure-u-1 pure-u-md-6-24"><div id="right-sidebar"><div class="content"><div class="pure-g"><div class="pure-u-1 font-small"><div class="posts l-box" itemprop="hasPart" itemscope itemtype="http://schema.org/Article"><section class="post"><header class="post-header"><meta itemprop="headline" content="Установка Apache на Windows"><h2 itemprop="name" class="post-title"><a href="https://andew.ru/ru/pages/page/install-apache-on-windows" title="Перейти к записи" itemprop="url">Установка Apache на Windows</a></h2><div class="post-meta"><div><i class="fa fa-file darkgray-font cursor-help fa-fw" title="Тип записи"></i><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdctype/article" title="Неактивный фильтр. Применить фильтр для этого значения" rel="nofollow"><i class="fa fa-filter darkgray-font fa-fw"></i>article</a></div><div><i class="fa fa-user darkgray-font cursor-help fa-fw" title="Автор (владелец) записи"></i><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdscolumn/8/rdsort/1" title="Применить сортировку по этим значениям" rel="nofollow"><i class="darkgray-font fa fa-sort fa-fw" title="Сортировка не активна по этим значениям."></i></a><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdowner/andew" title="Неактивный фильтр. Применить фильтр для этого значения" rel="nofollow"><i class="fa fa-filter darkgray-font fa-fw"></i><span itemprop="creator">andew</span></a></div><div><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdscolumn/0/rdsort/0" title="Применить сортировку по названию записи" rel="nofollow"><i class="darkgray-font fa fa-sort fa-fw" title="Сортировка не активна по этим значениям."></i>A-Z</a></div><div title="Всего просмотров" class="cursor-help"><i class="fa fa-eye darkgray-font fa-fw"></i><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdscolumn/4/rdsort/1" title="Применить сортировку по этим значениям" rel="nofollow"><i class="darkgray-font fa fa-sort fa-fw" title="Сортировка не активна по этим значениям."></i><span itemprop="interactionStatistic">7118</span></a></div><div><i class="fa fa-calendar darkgray-font cursor-help fa-fw" title="Дата публикации записи"></i><meta itemprop="dateCreated" content="2016-12-03T16:09:27+00:00"><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdscolumn/15/rdsort/1" title="Применить сортировку по дате публикации записи" rel="nofollow"><i class="darkgray-font fa fa-sort fa-fw" title="Сортировка не активна по этим значениям."></i><time itemprop="datePublished" datetime="2016-12-05T17:32:10+00:00" data-timestamp="1480959130">2016-12-05T17:32:10+00:00</time></a></div><div><i class="fa fa-calendar-o darkgray-font cursor-help fa-fw" title="Дата изменения записи"></i><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdscolumn/2/rdsort/1" title="Применить сортировку по дате изменения записи" rel="nofollow"><i class="darkgray-font fa fa-sort fa-fw" title="Сортировка не активна по этим значениям."></i><time itemprop="dateModified" datetime="2017-10-16T18:32:08+00:00" data-timestamp="1508178728">2017-10-16T18:32:08+00:00</time></a></div></div></header><div class="post-description"><img itemprop="image" class="post-thumbnail max-width-70" alt="Установка Apache на Windows" title="Установка Apache на Windows" src="https://andew.ru/content/uploads/userfiles/files/apache/install-apache-on-windows-98-andew-ru.png"><p itemprop="description">В статье описана портативная установка WEB сервера Apache на Windows из zip архива, включая все детали и шаги, такие как&hellip;</p></div></section></div></div><div class="pure-u-1 font-small"><div class="posts l-box" itemprop="hasPart" itemscope itemtype="http://schema.org/Article"><section class="post"><header class="post-header"><meta itemprop="headline" content="Установка Gulp в WEB проект сайта"><h2 itemprop="name" class="post-title"><a href="https://andew.ru/ru/pages/page/install-gulp" title="Перейти к записи" itemprop="url">Установка Gulp в WEB проект сайта</a></h2><div class="post-meta"><div><i class="fa fa-file darkgray-font cursor-help fa-fw" title="Тип записи"></i><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdctype/article" title="Неактивный фильтр. Применить фильтр для этого значения" rel="nofollow"><i class="fa fa-filter darkgray-font fa-fw"></i>article</a></div><div><i class="fa fa-user darkgray-font cursor-help fa-fw" title="Автор (владелец) записи"></i><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdscolumn/8/rdsort/1" title="Применить сортировку по этим значениям" rel="nofollow"><i class="darkgray-font fa fa-sort fa-fw" title="Сортировка не активна по этим значениям."></i></a><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdowner/andew" title="Неактивный фильтр. Применить фильтр для этого значения" rel="nofollow"><i class="fa fa-filter darkgray-font fa-fw"></i><span itemprop="creator">andew</span></a></div><div><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdscolumn/0/rdsort/0" title="Применить сортировку по названию записи" rel="nofollow"><i class="darkgray-font fa fa-sort fa-fw" title="Сортировка не активна по этим значениям."></i>A-Z</a></div><div title="Всего просмотров" class="cursor-help"><i class="fa fa-eye darkgray-font fa-fw"></i><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdscolumn/4/rdsort/1" title="Применить сортировку по этим значениям" rel="nofollow"><i class="darkgray-font fa fa-sort fa-fw" title="Сортировка не активна по этим значениям."></i><span itemprop="interactionStatistic">5016</span></a></div><div><i class="fa fa-calendar darkgray-font cursor-help fa-fw" title="Дата публикации записи"></i><meta itemprop="dateCreated" content="2016-09-30T16:46:12+00:00"><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdscolumn/15/rdsort/1" title="Применить сортировку по дате публикации записи" rel="nofollow"><i class="darkgray-font fa fa-sort fa-fw" title="Сортировка не активна по этим значениям."></i><time itemprop="datePublished" datetime="2016-10-01T17:49:41+00:00" data-timestamp="1475344181">2016-10-01T17:49:41+00:00</time></a></div><div><i class="fa fa-calendar-o darkgray-font cursor-help fa-fw" title="Дата изменения записи"></i><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdscolumn/2/rdsort/1" title="Применить сортировку по дате изменения записи" rel="nofollow"><i class="darkgray-font fa fa-sort fa-fw" title="Сортировка не активна по этим значениям."></i><time itemprop="dateModified" datetime="2017-08-15T11:40:42+00:00" data-timestamp="1502797242">2017-08-15T11:40:42+00:00</time></a></div></div></header><div class="post-description"><img itemprop="image" class="post-thumbnail max-width-70" alt="Установка Gulp в WEB проект сайта" title="Установка Gulp в WEB проект сайта" src="https://andew.ru/content/uploads/userfiles/files/js/gulp-andew-ru.png"><p itemprop="description">Пост описывает установку менеджера задач Gulp в web проект. Использование Gulp в разработческом веб проекте позволяет ав&hellip;</p></div></section></div></div><div class="pure-u-1 font-small"><div class="posts l-box" itemprop="hasPart" itemscope itemtype="http://schema.org/Article"><section class="post"><header class="post-header"><meta itemprop="headline" content="Обзор конфигурации Apache в Ubuntu"><h2 itemprop="name" class="post-title"><a href="https://andew.ru/ru/pages/page/apache-ubuntu-configuration-overview" title="Перейти к записи" itemprop="url">Обзор конфигурации Apache в Ubuntu</a></h2><div class="post-meta"><div><i class="fa fa-file darkgray-font cursor-help fa-fw" title="Тип записи"></i><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdctype/article" title="Неактивный фильтр. Применить фильтр для этого значения" rel="nofollow"><i class="fa fa-filter darkgray-font fa-fw"></i>article</a></div><div><i class="fa fa-user darkgray-font cursor-help fa-fw" title="Автор (владелец) записи"></i><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdscolumn/8/rdsort/1" title="Применить сортировку по этим значениям" rel="nofollow"><i class="darkgray-font fa fa-sort fa-fw" title="Сортировка не активна по этим значениям."></i></a><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdowner/andew" title="Неактивный фильтр. Применить фильтр для этого значения" rel="nofollow"><i class="fa fa-filter darkgray-font fa-fw"></i><span itemprop="creator">andew</span></a></div><div><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdscolumn/0/rdsort/0" title="Применить сортировку по названию записи" rel="nofollow"><i class="darkgray-font fa fa-sort fa-fw" title="Сортировка не активна по этим значениям."></i>A-Z</a></div><div title="Всего просмотров" class="cursor-help"><i class="fa fa-eye darkgray-font fa-fw"></i><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdscolumn/4/rdsort/1" title="Применить сортировку по этим значениям" rel="nofollow"><i class="darkgray-font fa fa-sort fa-fw" title="Сортировка не активна по этим значениям."></i><span itemprop="interactionStatistic">7476</span></a></div><div><i class="fa fa-calendar darkgray-font cursor-help fa-fw" title="Дата публикации записи"></i><meta itemprop="dateCreated" content="2016-07-21T16:01:50+00:00"><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdscolumn/15/rdsort/1" title="Применить сортировку по дате публикации записи" rel="nofollow"><i class="darkgray-font fa fa-sort fa-fw" title="Сортировка не активна по этим значениям."></i><time itemprop="datePublished" datetime="2016-07-23T17:54:43+00:00" data-timestamp="1469296483">2016-07-23T17:54:43+00:00</time></a></div><div><i class="fa fa-calendar-o darkgray-font cursor-help fa-fw" title="Дата изменения записи"></i><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdscolumn/2/rdsort/1" title="Применить сортировку по дате изменения записи" rel="nofollow"><i class="darkgray-font fa fa-sort fa-fw" title="Сортировка не активна по этим значениям."></i><time itemprop="dateModified" datetime="2017-08-25T04:44:37+00:00" data-timestamp="1503636277">2017-08-25T04:44:37+00:00</time></a></div></div></header><div class="post-description"><img itemprop="image" class="post-thumbnail max-width-70" alt="Обзор конфигурации Apache в Ubuntu" title="Обзор конфигурации Apache в Ubuntu" src="https://andew.ru/content/uploads/userfiles/files/apache/apache-conf-andew-ru.png"><p itemprop="description">В статье представлен обзор конфигурации web сервера Apache в Ubuntu server при стандартном варианте инсталляции LAMP в U&hellip;</p></div></section></div></div><div class="pure-u-1 font-small"><div class="posts l-box" itemprop="hasPart" itemscope itemtype="http://schema.org/Article"><section class="post"><header class="post-header"><meta itemprop="headline" content="Portable MySQL 5.7 в Windows"><h2 itemprop="name" class="post-title"><a href="https://andew.ru/ru/pages/page/installing-mysql-on-windows-from-zip-archive" title="Перейти к записи" itemprop="url">Portable MySQL 5.7 в Windows</a></h2><div class="post-meta"><div><i class="fa fa-file darkgray-font cursor-help fa-fw" title="Тип записи"></i><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdctype/article" title="Неактивный фильтр. Применить фильтр для этого значения" rel="nofollow"><i class="fa fa-filter darkgray-font fa-fw"></i>article</a></div><div><i class="fa fa-user darkgray-font cursor-help fa-fw" title="Автор (владелец) записи"></i><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdscolumn/8/rdsort/1" title="Применить сортировку по этим значениям" rel="nofollow"><i class="darkgray-font fa fa-sort fa-fw" title="Сортировка не активна по этим значениям."></i></a><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdowner/andew" title="Неактивный фильтр. Применить фильтр для этого значения" rel="nofollow"><i class="fa fa-filter darkgray-font fa-fw"></i><span itemprop="creator">andew</span></a></div><div><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdscolumn/0/rdsort/0" title="Применить сортировку по названию записи" rel="nofollow"><i class="darkgray-font fa fa-sort fa-fw" title="Сортировка не активна по этим значениям."></i>A-Z</a></div><div title="Всего просмотров" class="cursor-help"><i class="fa fa-eye darkgray-font fa-fw"></i><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdscolumn/4/rdsort/1" title="Применить сортировку по этим значениям" rel="nofollow"><i class="darkgray-font fa fa-sort fa-fw" title="Сортировка не активна по этим значениям."></i><span itemprop="interactionStatistic">12077</span></a></div><div><i class="fa fa-calendar darkgray-font cursor-help fa-fw" title="Дата публикации записи"></i><meta itemprop="dateCreated" content="2016-07-10T15:01:35+00:00"><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdscolumn/15/rdsort/1" title="Применить сортировку по дате публикации записи" rel="nofollow"><i class="darkgray-font fa fa-sort fa-fw" title="Сортировка не активна по этим значениям."></i><time itemprop="datePublished" datetime="2016-07-10T15:01:35+00:00" data-timestamp="1468162895">2016-07-10T15:01:35+00:00</time></a></div><div><i class="fa fa-calendar-o darkgray-font cursor-help fa-fw" title="Дата изменения записи"></i><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdscolumn/2/rdsort/1" title="Применить сортировку по дате изменения записи" rel="nofollow"><i class="darkgray-font fa fa-sort fa-fw" title="Сортировка не активна по этим значениям."></i><time itemprop="dateModified" datetime="2018-01-31T05:17:00+00:00" data-timestamp="1517375820">2018-01-31T05:17:00+00:00</time></a></div></div></header><div class="post-description"><img itemprop="image" class="post-thumbnail max-width-70" alt="Portable MySQL 5.7 в Windows" title="Portable MySQL 5.7 в Windows" src="https://andew.ru/content/uploads/userfiles/files/mysql/mysql-andew-ru.png"><p itemprop="description">В статье представлена установка и настройка портативного варианта базы данных MySQL 5.7 Community Server на Windows из z&hellip;</p></div></section></div></div><div class="pure-u-1 font-small"><div class="posts l-box" itemprop="hasPart" itemscope itemtype="http://schema.org/Article"><section class="post"><header class="post-header"><meta itemprop="headline" content="Как написать .htaccess файл для сайта"><h2 itemprop="name" class="post-title"><a href="https://andew.ru/ru/pages/page/htaccess" title="Перейти к записи" itemprop="url">Как написать .htaccess файл для сайта</a></h2><div class="post-meta"><div><i class="fa fa-file darkgray-font cursor-help fa-fw" title="Тип записи"></i><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdctype/article" title="Неактивный фильтр. Применить фильтр для этого значения" rel="nofollow"><i class="fa fa-filter darkgray-font fa-fw"></i>article</a></div><div><i class="fa fa-user darkgray-font cursor-help fa-fw" title="Автор (владелец) записи"></i><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdscolumn/8/rdsort/1" title="Применить сортировку по этим значениям" rel="nofollow"><i class="darkgray-font fa fa-sort fa-fw" title="Сортировка не активна по этим значениям."></i></a><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdowner/andew" title="Неактивный фильтр. Применить фильтр для этого значения" rel="nofollow"><i class="fa fa-filter darkgray-font fa-fw"></i><span itemprop="creator">andew</span></a></div><div><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdscolumn/0/rdsort/0" title="Применить сортировку по названию записи" rel="nofollow"><i class="darkgray-font fa fa-sort fa-fw" title="Сортировка не активна по этим значениям."></i>A-Z</a></div><div title="Всего просмотров" class="cursor-help"><i class="fa fa-eye darkgray-font fa-fw"></i><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdscolumn/4/rdsort/1" title="Применить сортировку по этим значениям" rel="nofollow"><i class="darkgray-font fa fa-sort fa-fw" title="Сортировка не активна по этим значениям."></i><span itemprop="interactionStatistic">12860</span></a></div><div><i class="fa fa-calendar darkgray-font cursor-help fa-fw" title="Дата публикации записи"></i><meta itemprop="dateCreated" content="2015-02-19T11:30:28+00:00"><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdscolumn/15/rdsort/1" title="Применить сортировку по дате публикации записи" rel="nofollow"><i class="darkgray-font fa fa-sort fa-fw" title="Сортировка не активна по этим значениям."></i><time itemprop="datePublished" datetime="2015-02-19T11:30:28+00:00" data-timestamp="1424345428">2015-02-19T11:30:28+00:00</time></a></div><div><i class="fa fa-calendar-o darkgray-font cursor-help fa-fw" title="Дата изменения записи"></i><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdscolumn/2/rdsort/1" title="Применить сортировку по дате изменения записи" rel="nofollow"><i class="darkgray-font fa fa-sort fa-fw" title="Сортировка не активна по этим значениям."></i><time itemprop="dateModified" datetime="2017-02-16T05:30:00+00:00" data-timestamp="1487223000">2017-02-16T05:30:00+00:00</time></a></div></div></header><div class="post-description"><img itemprop="image" class="post-thumbnail max-width-70" alt="Как написать .htaccess файл для сайта" title="Как написать .htaccess файл для сайта" src="https://andew.ru/content/uploads/userfiles/images/content/apache/htaccess.jpg"><p itemprop="description">Файл .htaccess являются по своему назначению конфигурационным файлом уровня каталога для web сервера Apache. Это означае&hellip;</p></div></section></div></div><div class="pure-u-1 font-small"><div class="posts l-box" itemprop="hasPart" itemscope itemtype="http://schema.org/Article"><section class="post"><header class="post-header"><meta itemprop="headline" content="Как организовать среду для web разработки"><h2 itemprop="name" class="post-title"><a href="https://andew.ru/ru/pages/page/lamp-devserver" title="Перейти к записи" itemprop="url">Как организовать среду для web разработки</a></h2><div class="post-meta"><div><i class="fa fa-file darkgray-font cursor-help fa-fw" title="Тип записи"></i><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdctype/article" title="Неактивный фильтр. Применить фильтр для этого значения" rel="nofollow"><i class="fa fa-filter darkgray-font fa-fw"></i>article</a></div><div><i class="fa fa-user darkgray-font cursor-help fa-fw" title="Автор (владелец) записи"></i><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdscolumn/8/rdsort/1" title="Применить сортировку по этим значениям" rel="nofollow"><i class="darkgray-font fa fa-sort fa-fw" title="Сортировка не активна по этим значениям."></i></a><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdowner/andew" title="Неактивный фильтр. Применить фильтр для этого значения" rel="nofollow"><i class="fa fa-filter darkgray-font fa-fw"></i><span itemprop="creator">andew</span></a></div><div><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdscolumn/0/rdsort/0" title="Применить сортировку по названию записи" rel="nofollow"><i class="darkgray-font fa fa-sort fa-fw" title="Сортировка не активна по этим значениям."></i>A-Z</a></div><div title="Всего просмотров" class="cursor-help"><i class="fa fa-eye darkgray-font fa-fw"></i><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdscolumn/4/rdsort/1" title="Применить сортировку по этим значениям" rel="nofollow"><i class="darkgray-font fa fa-sort fa-fw" title="Сортировка не активна по этим значениям."></i><span itemprop="interactionStatistic">8184</span></a></div><div><i class="fa fa-calendar darkgray-font cursor-help fa-fw" title="Дата публикации записи"></i><meta itemprop="dateCreated" content="2014-09-03T10:11:46+00:00"><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdscolumn/15/rdsort/1" title="Применить сортировку по дате публикации записи" rel="nofollow"><i class="darkgray-font fa fa-sort fa-fw" title="Сортировка не активна по этим значениям."></i><time itemprop="datePublished" datetime="2014-09-03T10:11:46+00:00" data-timestamp="1409739106">2014-09-03T10:11:46+00:00</time></a></div><div><i class="fa fa-calendar-o darkgray-font cursor-help fa-fw" title="Дата изменения записи"></i><a href="https://andew.ru/ru/pages/page/install-php-on-windows/rdscolumn/2/rdsort/1" title="Применить сортировку по дате изменения записи" rel="nofollow"><i class="darkgray-font fa fa-sort fa-fw" title="Сортировка не активна по этим значениям."></i><time itemprop="dateModified" datetime="2017-01-08T21:25:10+00:00" data-timestamp="1483910710">2017-01-08T21:25:10+00:00</time></a></div></div></header><div class="post-description"><img itemprop="image" class="post-thumbnail max-width-70" alt="Как организовать среду для web разработки" title="Как организовать среду для web разработки" src="https://andew.ru/content/uploads/userfiles/images/content/apache/lamp.jpg"><p itemprop="description">Если Вы разрабатываете web приложения на базе LAMP, то, наверное, перед Вами не раз вставал вопрос о том, как лучше орга&hellip;</p></div></section></div></div></div><ul class="pure-paginator"><li><a class="pure-button pure-button-active">1</a></li><li><a class="pure-button" href="https://andew.ru/ru/pages/page/install-php-on-windows/rdoffset/6">2</a></li><li><a class="pure-button" href="https://andew.ru/ru/pages/page/install-php-on-windows/rdoffset/6">&gt;</a></li></ul></div></div></div></div><div id="disqus_thread" style="padding:0 10px;"></div><div id="footer" class="clear-both"><div class="legal pure-g"><meta itemprop="creator" content="Andrey Boldyrev"><div class="pure-u-1 pure-u-md-1-2"><p class="legal-license">При полном или частичном использовании материалов c сайта Andew.ru активная гиперссылка на главную страницу Andew.ru обязательна.</p><p class="legal-license" itemprop="author" itemscope itemtype="http://schema.org/Person">Created by <i class="fa fa-user darkgray-font fa-fw"></i><a itemprop="url" title="WebSite Author Page" href="https://andew.ru/ru/pages/page/person-andrew"><span itemprop="name">Andrey Boldyrev</span></a>&nbsp;<i class="fa fa-paper-plane-o darkgray-font fa-fw"></i>&nbsp;<a itemprop="email" class="legal-license-by" href="mailto:andrew@andew.ru" title="Email to WebSite Author">Email</a><meta itemprop="image" content="https://andew.ru/content/uploads/userfiles/images/persons/andrew/andrew-andew-ru.jpg"></p></div><div class="pure-u-1 pure-u-md-1-2"><p class="legal-copyright">&copy;&nbsp;<span itemprop="copyrightYear">2017</span>&nbsp;<a href="https://andew.ru/" title="Andew.ru" itemprop="copyrightHolder">Andew.ru</a><br>All rights reserved<br><br><br></p></div></div></div></div></div><script type="text/javascript" src="/js/main.min.js?v=1.1.9"></script><script async type="text/javascript" src="/js/metrics-1.1.1.min.js"></script><script async="async" type="text/javascript" src="//yastatic.net/share2/share.js"></script><script>var disqus_config=function(){this.page.url="https://andew.ru/ru/pages/page/install-php-on-windows";this.page.identifier="228";};(function(){var d=document,s=d.createElement('script');s.src='https://andew-ru.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script></body></html> 
